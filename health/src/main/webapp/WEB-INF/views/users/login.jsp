@@ -37,13 +37,13 @@
 <tr>
 	<th>패스워드</th>
 	<td>
-		<input type="password" name="pwd" size="20">
+		<input type="password" name="pw" size="20">
 	</td>
 </tr>
 <tr>
 	<td colspan="2">
 		<input type="submit" value="login">
-		<button type="button" onclick="signup">회원가입</button>
+		<button type="button" onclick="signup()">회원가입</button>
 	</td>
 </tr>
 
@@ -53,7 +53,7 @@
 
 <script type="text/javascript">
 function signup() {
-	location.href = "member?param=signup";
+	location.href = "moveSignup.do";
 }
 /*
 	session : java -> server 회원정보, 방문회수 = Object

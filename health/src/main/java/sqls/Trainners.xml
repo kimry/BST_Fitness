@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Trainners">
+
+<insert id="insertTrainners" parameterType="com.one.health.dto.TrainnersDto">
+	INSERT INTO TRAINNERS(TID, NAME, FIELD, CAREER, CONTENT)
+	VALUES(#{tid}, #{name}, #{field}, #{career}, #{content})
+</insert>
+
+</mapper>

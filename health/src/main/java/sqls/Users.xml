@@ -9,6 +9,12 @@
 	FROM USERS
 	WHERE ID=#{id}
 </select>
+
+<insert id="insertUsers" parameterType="com.one.health.dto.UsersDto">
+	INSERT INTO USERS(ID, PW, NAME, AGE, EMAIL, PHONE, AUTH)
+	VALUES(#{id}, #{pw}, #{name}, #{age}, #{email}, #{phone}, #{auth})
+</insert>
+
 </mapper>
 
 

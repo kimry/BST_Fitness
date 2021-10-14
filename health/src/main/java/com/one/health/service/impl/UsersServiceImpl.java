@@ -18,6 +18,11 @@ public class UsersServiceImpl implements UsersService{
 	public UsersDto getUsers(UsersDto user) {
 		return dao.getUsers(user); 
 	}
+
+	@Override
+	public boolean insertUsers(UsersDto user) {
+		return dao.insertUsers(user);
+	}
 	
 
 }

@@ -17,11 +17,18 @@ public class UsersDaoImpl implements UsersDao{
 
 	@Override
 	public UsersDto getUsers(UsersDto user) {
-		System.out.println(user.getId());
 		UsersDto dto = sqlSession.selectOne(namespace + "getUsers", user);
 		return dto;
 	}
-	
-	
 
+	@Override
+	public boolean insertUsers(UsersDto user) {
+		int cnt = sqlSession.insert(namespace + "insertUsers", user);
+		if(cnt>0)
+		{
+			return true;
+		}
+		return false;
+	}
+	
 }
