@@ -1,5 +1,8 @@
 package com.one.health.dao.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,8 +27,10 @@ public class TrainnersDaoImpl implements TrainnersDao{
 		}
 		return false;
 	}
-	
-	
-	
+
+	@Override
+	public List<TrainnersDto> getTrainnerList() {
+		return sqlSession.selectList(namespace+"getTrainnerList");
+	}
 	
 }

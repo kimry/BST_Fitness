@@ -10,4 +10,9 @@
 	VALUES(#{tid}, #{name}, #{field}, #{career}, #{content})
 </insert>
 
+<select id="getTrainnersList" resultType="com.one.health.dto.TrainnersDto">
+	SELECT TID, NAME, FIELD, CAREER, CONTENT
+	FROM TRAINNERS
+</select>
+
 </mapper>

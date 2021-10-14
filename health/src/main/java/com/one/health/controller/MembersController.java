@@ -2,12 +2,13 @@ package com.one.health.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.one.health.dto.MembersDto;
 import com.one.health.service.MembersService;
@@ -20,11 +21,11 @@ public class MembersController {
 	@Autowired
 	MembersService service;
 	
-	@RequestMapping(value = "mSignup.do", method = RequestMethod.GET)
-	public String mSignup(String id, String name) {
+	@RequestMapping(value = "mSignup.do")
+	public String mSignup(HttpServletRequest req) {
 		logger.info("MembersController mSignup " + new Date());
 		
-		MembersDto member = new MembersDto(id,name,0,0,0,0);
+		MembersDto member = (MembersDto)req.getAttribute("member");
 		service.insertMembers(member);
 		return "users/login";
 	}

@@ -1,5 +1,7 @@
 package com.one.health.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +19,10 @@ public class TrainnersServiceImpl implements TrainnersService{
 	public boolean insertTrainners(TrainnersDto trainner) {
 		return dao.insertTrainners(trainner);
 	}
+
+	@Override
+	public List<TrainnersDto> getTrainnersList() {
+		return dao.getTrainnerList();
+	}
+	
 }

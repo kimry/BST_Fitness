@@ -2,6 +2,9 @@ package com.one.health.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.one.health.dto.MembersDto;
+import com.one.health.dto.TrainnersDto;
 import com.one.health.dto.UsersDto;
 import com.one.health.service.UsersService;
 
@@ -37,7 +41,7 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
-	public String login(UsersDto user) {
+	public String login(UsersDto user, HttpSession session, HttpServletRequest req) {
 		logger.info("UsersController login " + new Date());
 		
 		System.out.println(user.getId());
@@ -46,6 +50,7 @@ public class UsersController {
 		{
 			if(user.getId().equals(dto.getId())&&user.getPw().equals(dto.getPw()))
 			{
+				req.getSession().setAttribute("login", dto);
 				return "main";
 			}
 		}
@@ -57,13 +62,16 @@ public class UsersController {
 		logger.info("UsersController signup " + new Date());
 		
 		service.insertUsers(user);
+		
 		if(user.getAuth()==1)
 		{
-			return "redirect:/mSignup.do?id="+user.getId()+"&name="+user.getName();
+			model.addAttribute("member",new MembersDto(user.getId(),user.getName(),0,0,0,0));
+			return "forward:/mSignup.do";
 		}
 		else
 		{
-			return "redirect:/tSignup.do?id="+user.getId()+"&name="+user.getName();
+			model.addAttribute("trainner",new TrainnersDto(user.getId(),user.getName(),1,"입력이 필요합니다.","입력이 필요합니다."));
+			return "forward:/tSignup.do";
 		}
 	}
 	
