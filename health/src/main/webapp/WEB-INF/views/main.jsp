@@ -13,6 +13,6 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 String id = user.getId();
 %>
 <p>main</p>
-id : <%=id %>
+<a href="moveTrainnerList.do">TrainnerList</a>
 </body>
 </html>

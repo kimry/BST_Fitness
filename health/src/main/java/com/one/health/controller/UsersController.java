@@ -44,7 +44,6 @@ public class UsersController {
 	public String login(UsersDto user, HttpSession session, HttpServletRequest req) {
 		logger.info("UsersController login " + new Date());
 		
-		System.out.println(user.getId());
 		UsersDto dto = service.getUsers(user);
 		if(dto!=null)
 		{

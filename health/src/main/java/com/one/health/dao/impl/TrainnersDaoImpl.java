@@ -1,6 +1,5 @@
 package com.one.health.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -33,4 +32,8 @@ public class TrainnersDaoImpl implements TrainnersDao{
 		return sqlSession.selectList(namespace+"getTrainnerList");
 	}
 	
+	@Override
+	public TrainnersDto getTrainner(String tid) {
+		return sqlSession.selectOne(namespace+"getTrainner", tid);
+	}
 }

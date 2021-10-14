@@ -1,4 +1,4 @@
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="com.one.health.dto.TrainnersDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,42 +7,43 @@
 <head>
 <meta charset="UTF-8">
 <title>TrainnerList page</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <%
-ArrayList<TrainnersDto> trainnerList = (ArrayList<TrainnersDto>)request.getAttribute("trainnerList");
+List<TrainnersDto> trainnerList = (List<TrainnersDto>)request.getAttribute("trainnerList");
 %>
 <body>
 <div align="center">
-<table>
+<p>TrainnerList Page</p>
+<table border="1">
+<tr>
+<%
+for(int i=0;i<trainnerList.size();i++)
+{
+	
+	%>
+	<td>
+	<img class="trainner" id="<%=trainnerList.get(i).getTid() %>" src="resources/images/<%=trainnerList.get(i).getTid() %>.jpg" width="200px" height="200px"><br>
+	이름 : <%=trainnerList.get(i).getName()%><br>
+	분야 : <%=trainnerList.get(i).getField()==1?"pt트레이너":"필라테스" %>
+	</td>
 	<%
-	for(var i=0;i<=trainnerList.size()/4;i++)
+	if(i%4==3&&i!=0&&i!=trainnerList.size()-1)
 	{
 		%>
+		</tr>
 		<tr>
 		<%
-		for(var j=i*4;j<(i+1)*4;j++)
-		{
-			%>
-			<td></td>
-			<%
-		}
-		for(var j=i*4;j<(i+1)*4;j++)
-		{
-			%>
-			<td>
-			이름 : <%=trainnerList.get(j).getName() %><br>
-			 : <%=trainnerList.get(j).getField() %>
-			</td>
-			<%
-		}
-		%>
-		</tr>
-		<%
 	}
-	%>
-	<tr>
-	</tr>
+}
+%>
+</tr>
 </table>
 </div>
+<script type="text/javascript">
+$('.trainner').click(function() {
+	location.href="moveTrainnerView.do?tid="+this.id;
+});
+</script>
 </body>
 </html>

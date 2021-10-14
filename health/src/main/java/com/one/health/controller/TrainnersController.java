@@ -1,6 +1,7 @@
 package com.one.health.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,16 +26,30 @@ public class TrainnersController {
 	@RequestMapping(value = "tSignup.do")
 	public String tSignup(HttpServletRequest req) {
 		logger.info("TrainnersController tSignup " + new Date());
+		
 		TrainnersDto trainner = (TrainnersDto)req.getAttribute("trainner");
 		service.insertTrainners(trainner);
 		return "users/login";
 	}
 	
-	public String getTrainnerList(Model model) {
-		logger.info("TrainnersController getTrainnerList " +new Date());
+	@RequestMapping(value = "moveTrainnerList.do")
+	public String moveTrainnerList(Model model) {
+		logger.info("TrainnersController moveTrainnerList " + new Date());
 		
-		model.addAttribute("trainnerList",service.getTrainnersList());
+		List<TrainnersDto> trainnerList = service.getTrainnersList();
+		model.addAttribute("trainnerList",trainnerList);
 		return "trainners/trainnerList";
 	}
+	
+	@RequestMapping(value = "moveTrainnerView.do")
+	public String moveTrainnerView(Model model, String tid) {
+		logger.info("TrainnersController moveTrainnerView " + new Date());
+		
+		System.out.println("tid : "+tid);
+		TrainnersDto trainner = service.getTrainner(tid);
+		model.addAttribute("trainner",trainner);
+		return "trainners/trainnerView";
+	}
+
 	
 }
