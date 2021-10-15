@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="Users">
-<select id="getUsers" parameterType="com.one.health.dto.UsersDto" resultType="com.one.health.dto.UsersDto">
+<select id="getUsers" parameterType="java.lang.String" resultType="com.one.health.dto.UsersDto">
 	SELECT ID, PW, NAME, AGE, EMAIL, PHONE, AUTH
 	FROM USERS
 	WHERE ID=#{id}

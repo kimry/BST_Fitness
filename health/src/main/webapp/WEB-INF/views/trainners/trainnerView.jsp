@@ -1,3 +1,4 @@
+<%@page import="com.one.health.dto.UsersDto"%>
 <%@page import="com.one.health.dto.ReviewsDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.one.health.dto.TrainnersDto"%>
@@ -11,6 +12,7 @@
 </head>
 <body>
 <%
+UsersDto user = (UsersDto)session.getAttribute("login");
 TrainnersDto trainner = (TrainnersDto)request.getAttribute("trainner");
 List<ReviewsDto> reviewList = (List<ReviewsDto>)request.getAttribute("reviewList");
 %>
@@ -18,7 +20,7 @@ List<ReviewsDto> reviewList = (List<ReviewsDto>)request.getAttribute("reviewList
 <p>TrainnerView Page</p>
 <table border="1">
 	<tr>
-		<td><img src="resources/images/<%=trainner.getTid() %>.jpg" width="400px" height="400px"></td>
+		<td><img src="resources/images/trainer/<%=trainner.getTid() %>.jpg" width="400px" height="400px"></td>
 	</tr>
 	<tr>
 		<td>
@@ -54,9 +56,9 @@ List<ReviewsDto> reviewList = (List<ReviewsDto>)request.getAttribute("reviewList
 		%>
 		<tr>
 			<td><%=reviewList.get(i).getRnum() %></td>
-			<td><%=reviewList.get(i).getTitle() %></td>
+			<td><a href="moveReviewView.do?rnum=<%=reviewList.get(i).getRnum()%>"><%=reviewList.get(i).getTitle() %></a></td>
 			<td><%=reviewList.get(i).getMid() %></td>
-			<td><%=reviewList.get(i).getTid() %></td>
+			<td><%=reviewList.get(i).getWdate() %></td>
 			<td><%=reviewList.get(i).getGrade() %></td>
 			<td><%=reviewList.get(i).getRcm() %></td>
 			<td><%=reviewList.get(i).getOps() %></td>
@@ -68,7 +70,21 @@ List<ReviewsDto> reviewList = (List<ReviewsDto>)request.getAttribute("reviewList
 </div>
 <script type="text/javascript">
 function moveReviewWrite(){
-	location.href="moveReviewWrite.do?tid=<%=trainner.getTid()%>";
+	<%
+	if(user.getAuth()==2)
+	{
+		%>
+		alert("트레이너는 리뷰를 남길 수 없습니다.");
+		return false;
+		<%
+	}
+	else
+	{
+		%>
+		location.href="moveReviewWrite.do?tid=<%=trainner.getTid()%>";
+		<%
+	}
+	%>
 }
 </script>
 </body>

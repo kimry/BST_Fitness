@@ -13,7 +13,22 @@
 <select id="getReviewList" resultType="com.one.health.dto.ReviewsDto">
 	SELECT RNUM, TID, MID, TITLE, WDATE, GRADE, CONTENT, RCM, OPS
 	FROM REVIEWS
+	WHERE TID=#{tid}
+	ORDER BY RNUM DESC
 </select>
 
+<select id="getReviews" parameterType="Integer" resultType="com.one.health.dto.ReviewsDto">
+	SELECT RNUM, TID, MID, TITLE, WDATE, GRADE, CONTENT, RCM, OPS
+	FROM REVIEWS
+	WHERE RNUM=#{rnum}
+</select>
+
+<update id="upRcm" parameterType="Integer">
+	UPDATE REVIEWS SET RCM = RCM+1 WHERE RNUM=#{rnum}
+</update>
+
+<update id="upOps" parameterType="Integer">
+	UPDATE REVIEWS SET OPS = OPS+1 WHERE RNUM=#{rnum}
+</update>
 </mapper>
 

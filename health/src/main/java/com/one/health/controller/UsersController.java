@@ -49,15 +49,16 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
-	public String login(UsersDto user, HttpSession session, HttpServletRequest req) {
+	public String login(String id, String pw, HttpSession session, HttpServletRequest req) {
 		logger.info("UsersController login " + new Date());
 		
-		UsersDto dto = uService.getUsers(user);
+		UsersDto dto = uService.getUsers(id);
 		if(dto!=null)
 		{
-			if(user.getId().equals(dto.getId())&&user.getPw().equals(dto.getPw()))
+			if(id.equals(dto.getId())&&pw.equals(dto.getPw()))
 			{
 				req.getSession().setAttribute("login", dto);
+				req.getSession().setMaxInactiveInterval(60 * 60 * 2);
 				return "main";
 			}
 		}
@@ -68,7 +69,12 @@ public class UsersController {
 	public String signup(Model model, UsersDto user) {
 		logger.info("UsersController signup " + new Date());
 		
-		uService.insertUsers(user);
+		try{
+			uService.insertUsers(user);
+		}catch(Exception e){
+			model.addAttribute("msg","똑같은 아이디가 존재합니다.");
+			return "users/signup";
+		}
 		
 		if(user.getAuth()==1)
 		{

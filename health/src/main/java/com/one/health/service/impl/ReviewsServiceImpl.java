@@ -21,8 +21,23 @@ public class ReviewsServiceImpl implements ReviewsService {
 	}
 
 	@Override
-	public List<ReviewsDto> getReviewList() {
-		return dao.getReviewList();
+	public List<ReviewsDto> getReviewList(String tid) {
+		return dao.getReviewList(tid);
+	}
+
+	@Override
+	public ReviewsDto getReviews(int rnum) {
+		return dao.getReviews(rnum);
+	}
+
+	@Override
+	public boolean upRcm(int rnum) {
+		return dao.upRcm(rnum);
+	}
+
+	@Override
+	public boolean upOps(int rnum) {
+		return dao.upOps(rnum);
 	}
 	
 }

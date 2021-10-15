@@ -4,6 +4,6 @@ import com.one.health.dto.UsersDto;
 
 public interface UsersService {
 	
-	UsersDto getUsers(UsersDto user);
+	UsersDto getUsers(String id);
 	boolean insertUsers(UsersDto user);
 }

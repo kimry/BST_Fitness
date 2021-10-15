@@ -15,8 +15,8 @@ public class UsersServiceImpl implements UsersService{
 	UsersDao dao;
 
 	@Override
-	public UsersDto getUsers(UsersDto user) {
-		return dao.getUsers(user); 
+	public UsersDto getUsers(String id) {
+		return dao.getUsers(id); 
 	}
 
 	@Override

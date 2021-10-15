@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.one.health.dto.MembersDto;
 import com.one.health.dto.ReviewsDto;
 import com.one.health.dto.TrainnersDto;
+import com.one.health.service.MembersService;
 import com.one.health.service.ReviewsService;
 import com.one.health.service.TrainnersService;
 
@@ -24,6 +26,9 @@ public class TrainnersController {
 	
 	@Autowired
 	ReviewsService rService;
+	
+	@Autowired
+	MembersService mService;
 	
 	@RequestMapping(value = "moveTrainnerList.do")
 	public String moveTrainnerList(Model model) {
@@ -39,7 +44,7 @@ public class TrainnersController {
 		logger.info("TrainnersController moveTrainnerView " + new Date());
 		
 		TrainnersDto trainner = tService.getTrainner(tid);
-		List<ReviewsDto> reviewList = rService.getReviewList(); 
+		List<ReviewsDto> reviewList = rService.getReviewList(tid); 
 		model.addAttribute("trainner",trainner);
 		model.addAttribute("reviewList", reviewList);
 		return "trainners/trainnerView";
@@ -60,5 +65,33 @@ public class TrainnersController {
 		
 		rService.insertReviews(new ReviewsDto(0, tid, mid, title, "", grade, content, 0, 0));
 		return "redirect:/moveTrainnerView.do?tid="+tid;
+	}
+	
+	@RequestMapping(value="moveReviewView.do")
+	public String moveReview(Model model, int rnum)
+	{
+		logger.info("ReviewsController moveReview " + new Date());
+		
+		ReviewsDto review = rService.getReviews(rnum);
+		TrainnersDto trainer = tService.getTrainner(review.getTid());
+		MembersDto member = mService.getMembers(review.getMid());
+		model.addAttribute("review",review);
+		model.addAttribute("trainer",trainer);
+		model.addAttribute("member",member);
+		return "trainners/reviewView";
+	}
+	
+	@RequestMapping(value="upRcm.do")
+	public String upRcm(int rnum)
+	{
+		rService.upRcm(rnum);
+		return "redirect:/moveReviewView.do?rnum="+rnum;
+	}
+	
+	@RequestMapping(value="upOps.do")
+	public String upOps(int rnum)
+	{
+		rService.upOps(rnum);
+		return "redirect:/moveReviewView.do?rnum="+rnum;
 	}
 }

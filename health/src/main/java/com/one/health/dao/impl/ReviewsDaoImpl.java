@@ -28,9 +28,32 @@ public class ReviewsDaoImpl implements ReviewsDao{
 	}
 
 	@Override
-	public List<ReviewsDto> getReviewList() {
-		return sqlSession.selectList(namespace + "getReviewList");
+	public List<ReviewsDto> getReviewList(String tid) {
+		return sqlSession.selectList(namespace + "getReviewList",tid);
 	}
-	
-	
+
+	@Override
+	public ReviewsDto getReviews(int rnum) {
+		return sqlSession.selectOne(namespace+"getReviews",rnum);
+	}
+
+	@Override
+	public boolean upRcm(int rnum) {
+		int cnt = sqlSession.update(namespace+"upRcm",rnum);
+		if(cnt>0)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean upOps(int rnum) {
+		int cnt = sqlSession.update(namespace+"upOps",rnum);
+		if(cnt>0)
+		{
+			return true;
+		}
+		return false;
+	}
 }

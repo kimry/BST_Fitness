@@ -9,7 +9,7 @@ import com.one.health.dto.MembersDto;
 
 @Repository
 public class MembersDaoImpl implements MembersDao{
-	
+
 	@Autowired
 	SqlSession sqlSession;
 	
@@ -23,5 +23,10 @@ public class MembersDaoImpl implements MembersDao{
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public MembersDto getMembers(String mid) {
+		return sqlSession.selectOne(namespace + "getMembers", mid);
 	}
 }

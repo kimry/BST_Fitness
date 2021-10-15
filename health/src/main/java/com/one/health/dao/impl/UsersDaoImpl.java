@@ -16,8 +16,8 @@ public class UsersDaoImpl implements UsersDao{
 	String namespace = "Users.";
 
 	@Override
-	public UsersDto getUsers(UsersDto user) {
-		UsersDto dto = sqlSession.selectOne(namespace + "getUsers", user);
+	public UsersDto getUsers(String id) {
+		UsersDto dto = sqlSession.selectOne(namespace + "getUsers", id);
 		return dto;
 	}
 

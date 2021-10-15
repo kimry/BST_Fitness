@@ -10,4 +10,10 @@
 	VALUES(#{mid}, #{name}, #{ptpoint}, #{flpoint}, #{rent}, #{price})
 </insert>
 
+<select id="getMembers" parameterType="java.lang.String" resultType="com.one.health.dto.MembersDto">
+	SELECT MID, NAME, PTPOINT, FLPOINT, RENT, PRICE
+	FROM MEMBERS
+	WHERE MID=#{mid}
+</select>
+
 </mapper>
