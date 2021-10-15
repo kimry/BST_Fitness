@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Qna">
+
+<select id="qnalist" parameterType="com.one.health.dto.QnaParam" resultType="com.one.health.dto.QnaDto">
+	SELECT QNUM, ID, REF, DEPTH, TITLE, CONTENT, WDATE, DEL, READCOUNT
+	FROM (SELECT 	ROW_NUMBER()OVER(ORDER BY REF DESC) AS RNUM,
+				QNUM, ID, REF, DEPTH, 
+				TITLE, CONTENT, WDATE, 
+				DEL, READCOUNT
+		FROM QNA
+		<if test="choice == 'title'">
+			WHERE TITLE LIKE '%'||#{ search }||'%'
+		</if>
+		<if test="choice == 'content'">
+			WHERE CONTENT LIKE '%'||#{ search }||'%'
+		</if>
+		<if test="choice == 'id'">
+			WHERE ID=#{ search }
+		</if>	
+		ORDER BY REF DESC)
+	WHERE RNUM BETWEEN #{start} AND #{end}
+</select>
+
+<select id="allqna" parameterType="com.one.health.dto.QnaParam" resultType="Integer">
+	SELECT COUNT(*) 
+	FROM QNA
+	<if test="choice == 'title'">
+		WHERE TITLE LIKE '%'||#{ search }||'%'
+	</if>
+	<if test="choice == 'content'">
+		WHERE CONTENT LIKE '%'||#{ search }||'%'
+	</if>
+	<if test="choice == 'id'">
+		WHERE ID=#{ search }
+	</if>
+</select>
+
+<insert id="qnaWrite" parameterType="com.one.health.dto.QnaDto">
+	INSERT INTO QNA(QNUM, ID, REF, DEPTH, 
+			TITLE, CONTENT, WDATE, DEL, READCOUNT)
+	VALUES(QNUM_QNA.NEXTVAL, #{id}, (SELECT NVL(MAX(REF), 0)+1 FROM QNA), 0, 
+			#{title}, #{content}, SYSDATE, 0, 0)
+</insert>
+
+<select id="getQna" parameterType="Integer" resultType="com.one.health.dto.QnaDto">
+	SELECT QNUM, ID, REF, DEPTH, TITLE, CONTENT, WDATE, DEL, READCOUNT
+	FROM QNA
+	WHERE QNUM=#{qnum}	
+</select>
+
+<update id="readcount" parameterType="Integer">
+	UPDATE QNA
+	SET READCOUNT=READCOUNT+1
+	WHERE QNUM=#{qnum}
+</update>
+
+<update id="qnaupdate" parameterType="com.one.health.dto.QnaDto">
+	UPDATE QNA
+	SET DEPTH = DEPTH+1
+	WHERE REF = (SELECT QNUM FROM QNA WHERE QNUM= #{qnum})
+		AND DEPTH > (SELECT DEPTH FROM QNA WHERE QNUM= #{qnum})
+</update>
+
+<insert id="qnaAnswer" parameterType="com.one.health.dto.QnaDto">
+	INSERT INTO QNA(QNUM, ID, REF, DEPTH, TITLE, CONTENT, WDATE, DEL, READCOUNT)
+	VALUES(QNUM_QNA.NEXTVAL,#{id},(SELECT REF FROM QNA WHERE QNUM=#{qnum}),
+			(SELECT DEPTH FROM QNA WHERE QNUM=#{qnum})+1,#{title},#{content},SYSDATE,0,0)
+</insert>
+
+<update id="qnaChange" parameterType="com.one.health.dto.QnaDto">
+	UPDATE QNA
+	SET TITLE=#{title},CONTENT=#{content}
+	WHERE QNUM=#{qnum}
+</update>
+
+<update id="deleteQna" parameterType="Integer">
+	UPDATE QNA
+	SET DEL=1
+	WHERE QNUM=#{qnum}
+</update>
+
+</mapper>

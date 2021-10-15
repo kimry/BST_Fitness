@@ -1,3 +1,5 @@
+<%@page import="com.one.health.dto.ReviewsDto"%>
+<%@page import="java.util.List"%>
 <%@page import="com.one.health.dto.TrainnersDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,6 +12,7 @@
 <body>
 <%
 TrainnersDto trainner = (TrainnersDto)request.getAttribute("trainner");
+List<ReviewsDto> reviewList = (List<ReviewsDto>)request.getAttribute("reviewList");
 %>
 <div align="center">
 <p>TrainnerView Page</p>
@@ -45,11 +48,27 @@ TrainnersDto trainner = (TrainnersDto)request.getAttribute("trainner");
 		<th>추천</th>
 		<th>비추천</th>
 	</tr>
+	<%
+	for(int i=0;i<reviewList.size();i++)
+	{
+		%>
+		<tr>
+			<td><%=reviewList.get(i).getRnum() %></td>
+			<td><%=reviewList.get(i).getTitle() %></td>
+			<td><%=reviewList.get(i).getMid() %></td>
+			<td><%=reviewList.get(i).getTid() %></td>
+			<td><%=reviewList.get(i).getGrade() %></td>
+			<td><%=reviewList.get(i).getRcm() %></td>
+			<td><%=reviewList.get(i).getOps() %></td>
+		</tr>
+		<%
+	}
+	%>
 </table>
 </div>
 <script type="text/javascript">
 function moveReviewWrite(){
-	location.href="moveReviewWrite()?tid=<%=trainner.getTid()%>";
+	location.href="moveReviewWrite.do?tid=<%=trainner.getTid()%>";
 }
 </script>
 </body>

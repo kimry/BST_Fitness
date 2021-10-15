@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.one.health.dto.MembersDto;
 import com.one.health.dto.TrainnersDto;
 import com.one.health.dto.UsersDto;
+import com.one.health.service.MembersService;
+import com.one.health.service.TrainnersService;
 import com.one.health.service.UsersService;
 
 @Controller
@@ -24,7 +26,13 @@ public class UsersController {
 	private static Logger logger = LoggerFactory.getLogger(UsersController.class);
 	
 	@Autowired
-	UsersService service;
+	UsersService uService;
+	
+	@Autowired
+	MembersService mService;
+	
+	@Autowired
+	TrainnersService tService;
 	
 	@RequestMapping(value = "moveLogin.do", method = RequestMethod.GET)
 	public String moveLogin() {
@@ -44,7 +52,7 @@ public class UsersController {
 	public String login(UsersDto user, HttpSession session, HttpServletRequest req) {
 		logger.info("UsersController login " + new Date());
 		
-		UsersDto dto = service.getUsers(user);
+		UsersDto dto = uService.getUsers(user);
 		if(dto!=null)
 		{
 			if(user.getId().equals(dto.getId())&&user.getPw().equals(dto.getPw()))
@@ -60,18 +68,17 @@ public class UsersController {
 	public String signup(Model model, UsersDto user) {
 		logger.info("UsersController signup " + new Date());
 		
-		service.insertUsers(user);
+		uService.insertUsers(user);
 		
 		if(user.getAuth()==1)
 		{
-			model.addAttribute("member",new MembersDto(user.getId(),user.getName(),0,0,0,0));
-			return "forward:/mSignup.do";
+			mService.insertMembers(new MembersDto(user.getId(),user.getName(),0,0,0,0));
 		}
 		else
 		{
-			model.addAttribute("trainner",new TrainnersDto(user.getId(),user.getName(),1,"입력이 필요합니다.","입력이 필요합니다."));
-			return "forward:/tSignup.do";
+			tService.insertTrainners(new TrainnersDto(user.getId(),user.getName(),1,"입력이 필요합니다.","입력이 필요합니다."));
 		}
+		return "users/login";
 	}
 	
 }
