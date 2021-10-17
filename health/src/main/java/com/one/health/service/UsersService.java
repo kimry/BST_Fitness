@@ -6,4 +6,5 @@ public interface UsersService {
 	
 	UsersDto getUsers(String id);
 	boolean insertUsers(UsersDto user);
+	boolean updateUsers(UsersDto user);
 }

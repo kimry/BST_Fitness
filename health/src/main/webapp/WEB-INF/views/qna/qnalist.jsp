@@ -56,6 +56,36 @@ public String dot3(String title){
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<style type="text/css">
+table.type1 {
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+
+}
+table.type1 thead th {
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #369;
+	border-bottom: 3px solid #036;
+}
+table.type1 tbody th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #f3f6f7;
+}
+table.type1 td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+</style>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	// 검색어가 있는 경우
@@ -71,15 +101,16 @@ $(document).ready(function() {
 
 </head>
 <body>
-
+<h1>Q&A 게시판</h1>
 <div align="center">
 
-<table border="1">
-<col width="70px"><col width="550px"><col width="100px"><col width="100px">
+<table class="type1">
+<thead>
 <tr>
 	<th>번호</th><th>제목</th><th>조회수</th><th>작성자</th>
 </tr>
-
+</thead>
+<tbody>
 <%
 if(list == null || list.size() == 0){
 %>
@@ -98,7 +129,7 @@ if(list == null || list.size() == 0){
 				<%
 				if(qna.getDel() == 0){
 					%>
-					<td class="titleTd">						
+					<td class="titleTd" align="left">						
 					<%=arrow( qna.getDepth() ) %>				
 					<a href="qnadetail.do?qnum=<%=qna.getQnum() %>"><%=dot3(qna.getTitle()) %></a>
 					</td>
@@ -122,6 +153,7 @@ if(list == null || list.size() == 0){
 	}
 }
 %>
+</tbody>
 </table>
 
 <% 

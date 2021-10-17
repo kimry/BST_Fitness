@@ -21,37 +21,6 @@ if(msg!=null)
 }
 %>
 <script type="text/javascript">
-function check(){
-	if($('#id').val().trim().length==0){
-		alert("ID를 입력해주세요.");
-		$('#id').focus();
-	} 
-	else if($('#pw').val().trim().length==0){
-		alert("PW를 입력해주세요.");
-		$('#pw').focus();
-	}else if($('#pw').val()!==$('#pwc').val()){
-		alert("PW가 서로 다릅니다.");
-		$('#pw').focus();
-	}else if($('#name').val().trim().length==0){
-		alert("이름을 입력해주세요.");
-		$('#age').focus();
-	}else if($('#age').val().trim().length==0){
-		alert("나이를 입력해주세요.");
-		$('#age').focus();
-	}else if(isNaN($('#age').val())){
-		alert("나이는 숫자로 입력해주세요");
-		$('#age').focus();
-	}else if($('#email').val().trim().length==0){
-		alert("e-mail을 입력해주세요.");
-		$('#email').focus();
-	}else if($('#phone').val().trim().length==0){
-		alert("전화번호를 입력해주세요.");
-		$('#phone').focus();
-	}else{
-		return true;
-	}
-	return false;
-}
 </script>
 
 
@@ -101,8 +70,38 @@ function check(){
 </div>
 <script type="text/javascript">
 function moveLogin(){
-	
 	location.href = "moveLogin.do";
+}
+function check(){
+	if($('#id').val().trim().length==0){
+		alert("ID를 입력해주세요.");
+		$('#id').focus();
+	} 
+	else if($('#pw').val().trim().length==0){
+		alert("PW를 입력해주세요.");
+		$('#pw').focus();
+	}else if($('#pw').val()!==$('#pwc').val()){
+		alert("PW가 서로 다릅니다.");
+		$('#pw').focus();
+	}else if($('#name').val().trim().length==0){
+		alert("이름을 입력해주세요.");
+		$('#age').focus();
+	}else if($('#age').val().trim().length==0){
+		alert("나이를 입력해주세요.");
+		$('#age').focus();
+	}else if(isNaN($('#age').val())){
+		alert("나이는 숫자로 입력해주세요");
+		$('#age').focus();
+	}else if($('#email').val().trim().length==0){
+		alert("e-mail을 입력해주세요.");
+		$('#email').focus();
+	}else if($('#phone').val().trim().length==0){
+		alert("전화번호를 입력해주세요.");
+		$('#phone').focus();
+	}else{
+		return true;
+	}
+	return false;
 }
 </script>
 </body>

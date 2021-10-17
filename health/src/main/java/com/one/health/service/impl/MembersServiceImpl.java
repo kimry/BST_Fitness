@@ -22,4 +22,10 @@ public class MembersServiceImpl implements MembersService{
 	public MembersDto getMembers(String mid) {
 		return dao.getMembers(mid);
 	}
+
+	@Override
+	public boolean updateMember(MembersDto member) {
+		return dao.updateMember(member);
+	}
+	
 }

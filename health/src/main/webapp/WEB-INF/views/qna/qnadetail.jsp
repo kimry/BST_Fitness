@@ -5,6 +5,7 @@
 
 <%
 QnaDto qna = (QnaDto)request.getAttribute("qna");
+UsersDto user = (UsersDto)request.getAttribute("user");
 %>
 
 <!DOCTYPE html>
@@ -14,6 +15,29 @@ QnaDto qna = (QnaDto)request.getAttribute("qna");
 <title>Insert title here</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style type="text/css">
+table.type1 {
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+
+}
+table.type1 th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #f3f6f7;
+}
+table.type1 td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+</style>
 
 </head>
 <body>
@@ -34,8 +58,8 @@ if(dto == null){
 
 <div align="center">
 
-<table border="1">
-<col width="200px"><col width="400px">
+<table class="type1">
+
 
 <tr>
 	<th>작성자</th>
@@ -71,7 +95,13 @@ if(dto == null){
 </table>
 
 <button type="button" class="btn btn-info" onclick="location.href='qnalist.do'">글목록</button>
-<button type="button" onclick="answerQna(<%=qna.getQnum() %>)">답글</button>
+<%
+if(user.getAuth() == 2){
+%>
+	<button type="button" onclick="answerQna(<%=qna.getQnum() %>)">답글</button>
+<%
+}
+%>
 
 <%
 if(qna.getId().equals( dto.getId() )){

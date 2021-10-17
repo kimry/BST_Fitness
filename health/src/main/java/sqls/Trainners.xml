@@ -32,4 +32,10 @@ SELECT TID, NAME, FIELD, CAREER, CONTENT
 	FROM TRAINNERS
 	WHERE FIELD = 2
 </select>
+
+<update id="updateTrainner" parameterType="com.one.health.dto.TrainnersDto">
+	UPDATE TRAINNERS
+	SET NAME=#{name},FIELD=#{field},CAREER=#{career},CONTENT=#{content}
+	WHERE TID=#{tid}
+</update>
 </mapper>

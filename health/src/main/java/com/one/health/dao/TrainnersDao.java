@@ -11,4 +11,5 @@ public interface TrainnersDao {
 	TrainnersDto getTrainner(String tid);
 	List<TrainnersDto> getPTList();
 	List<TrainnersDto> getPLList();
+	boolean updateTrainner(TrainnersDto trainner);
 }

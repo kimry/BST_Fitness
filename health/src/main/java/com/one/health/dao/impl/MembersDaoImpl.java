@@ -29,4 +29,14 @@ public class MembersDaoImpl implements MembersDao{
 	public MembersDto getMembers(String mid) {
 		return sqlSession.selectOne(namespace + "getMembers", mid);
 	}
+
+	@Override
+	public boolean updateMember(MembersDto member) {
+		int cnt = sqlSession.update(namespace+"updateMember", member);
+		if(cnt>0)
+		{
+			return true;
+		}
+		return false;
+	}
 }

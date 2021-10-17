@@ -39,6 +39,10 @@ public class TrainnersServiceImpl implements TrainnersService{
 	public List<TrainnersDto> getPLList() {
 		return dao.getPLList();
 	}
-	
+
+	@Override
+	public boolean updateTrainner(TrainnersDto trainner) {
+		return dao.updateTrainner(trainner);
+	}
 	
 }

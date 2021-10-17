@@ -46,6 +46,15 @@ public class TrainnersDaoImpl implements TrainnersDao{
 	public List<TrainnersDto> getPLList() {
 		return sqlSession.selectList(namespace+"getPLList");
 	}
-	
+
+	@Override
+	public boolean updateTrainner(TrainnersDto trainner) {
+		int cnt = sqlSession.update(namespace+"updateTrainner",trainner);
+		if(cnt>0)
+		{
+			return true;
+		}
+		return false;
+	}
 	
 }

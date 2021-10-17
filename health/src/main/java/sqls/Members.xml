@@ -16,4 +16,10 @@
 	WHERE MID=#{mid}
 </select>
 
+<update id="updateMember" parameterType="com.one.health.dto.MembersDto">
+	UPDATE MEMBERS
+	SET NAME=#{name}
+	WHERE MID=#{mid}
+</update>
+
 </mapper>

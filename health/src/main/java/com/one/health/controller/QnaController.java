@@ -3,6 +3,9 @@ package com.one.health.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.one.health.dto.QnaDto;
 import com.one.health.dto.QnaParam;
+import com.one.health.dto.UsersDto;
 import com.one.health.service.QnaService;
+import com.one.health.service.UsersService;
 
 
 @Controller
@@ -22,7 +27,9 @@ public class QnaController {
 	private static Logger logger = LoggerFactory.getLogger(QnaController.class);
 
 	@Autowired
-	QnaService service;
+	QnaService qservice;
+	@Autowired
+	UsersService uservice;
 	
 	@RequestMapping(value = "qnalist.do", method = RequestMethod.GET)
 	public String qnalist(Model model, QnaParam param) {
@@ -42,14 +49,14 @@ public class QnaController {
 		param.setStart(start);
 		param.setEnd(end);
 
-		List<QnaDto> list = service.getQnaList(param);
+		List<QnaDto> list = qservice.getQnaList(param);
 		model.addAttribute("qnalist", list);
 
 		model.addAttribute("choice", param.getChoice());
 		model.addAttribute("search", param.getSearch());
 
 		// 총 글의 수 갖고오기
-		int allqna = service.getAllQna(param);
+		int allqna = qservice.getAllQna(param);
 		// 총 페이지 수
 		int qnaPage = allqna / 10; // 29 / 10 -> 2
 		System.out.println(qnaPage);
@@ -73,7 +80,7 @@ public class QnaController {
 	public String qnawriteAf(QnaDto qna) {
 		logger.info("QnaController qnawriteAf " + new Date());
 		
-		boolean b = service.qnaWrite(qna);
+		boolean b = qservice.qnaWrite(qna);
 		if(b == true) {
 			return "redirect:/qnalist.do"; // controller
 		}
@@ -83,12 +90,14 @@ public class QnaController {
 	
 	
 	@RequestMapping(value = "qnadetail.do", method = RequestMethod.GET)
-	public String qnadetail(int qnum, Model model) {
+	public String qnadetail(int qnum, Model model,HttpSession session, HttpServletRequest req) {
 		logger.info("QnaController bbsdetail " + new Date());
 		
-		QnaDto qna = service.getQna(qnum);
+		QnaDto qna = qservice.getQna(qnum);
+		UsersDto dto = (UsersDto)session.getAttribute("login");
 		
 		model.addAttribute("qna",qna);
+		model.addAttribute("user", dto);
 		model.addAttribute("qnum", qnum);
 		
 		return "qna/qnadetail";
@@ -98,7 +107,7 @@ public class QnaController {
 	public String qnaaswer(int qnum, Model model) {
 		logger.info("QnaController qnaaswer " + new Date());
 		
-		QnaDto qna = service.getQna(qnum);
+		QnaDto qna = qservice.getQna(qnum);
 		
 		model.addAttribute("qna", qna);
 		model.addAttribute("qnum", qnum);
@@ -110,7 +119,7 @@ public class QnaController {
 	public String qnaanswerAf(int qnum, QnaDto qna) {
 		logger.info("QnaController qnaanswerAf " + new Date());
 		
-		boolean b = service.qnaAnswer(qna);
+		boolean b = qservice.qnaAnswer(qna);
 		
 		if(b== true) {
 			return "redirect:/qnalist.do";
@@ -123,7 +132,7 @@ public class QnaController {
 	public String qnaUpdate(int qnum, Model model) {
 		logger.info("QnaController qnaupdate " + new Date());
 		
-		QnaDto qna = service.getQna(qnum);
+		QnaDto qna = qservice.getQna(qnum);
 		
 		model.addAttribute("qna", qna);
 		
@@ -133,7 +142,7 @@ public class QnaController {
 	@RequestMapping(value = "qnaupdateAf.do", method = RequestMethod.POST)
 	public String qnaupdateAf(QnaDto qna) {
 		
-		service.qnaChange(qna);
+		qservice.qnaChange(qna);
 		
 		return "redirect:/qnalist.do";
 	}
@@ -141,7 +150,7 @@ public class QnaController {
 	@RequestMapping(value = "qnadelete.do", method = RequestMethod.GET)
 	public String qnadelete(int qnum) {
 		
-		service.deleteQna(qnum);
+		qservice.deleteQna(qnum);
 		
 		return "redirect:/qnalist.do";
 	}

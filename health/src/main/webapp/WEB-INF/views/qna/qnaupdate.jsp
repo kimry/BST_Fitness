@@ -13,14 +13,14 @@ QnaDto qna = (QnaDto)request.getAttribute("qna");
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-
 
 <h2>글 수정</h2>
 
 <div align="center">
-<form action="qnaupdateAf.do" method="post">
+<form action="qnaupdateAf.do" method="post" onsubmit="return check()">
 <input type="hidden" name="qnum" value="<%=qna.getQnum() %>">
 <table border="1">
 <col width="200px"><col width="400px">
@@ -31,7 +31,7 @@ QnaDto qna = (QnaDto)request.getAttribute("qna");
 <tr>
 	<th>제목</th>
 	<td>
-		<input type="text" name="title" size="100" value="<%=qna.getTitle() %>">
+		<input type="text" id="title" name="title" size="100" value="<%=qna.getTitle() %>">
 	</td>
 </tr>
 <tr>
@@ -49,7 +49,7 @@ QnaDto qna = (QnaDto)request.getAttribute("qna");
 <tr>
 	<th>내용</th>
 	<td>
-		<textarea rows="19" cols="90" name="content"><%=qna.getContent() %></textarea>
+		<textarea rows="19" cols="90" id="content" name="content"><%=qna.getContent() %></textarea>
 	</td>
 </tr>
 <tr>
@@ -62,6 +62,19 @@ QnaDto qna = (QnaDto)request.getAttribute("qna");
 </form>
 </div>
 
-
+<script type="text/javascript">
+function check(){
+	if($('#title').val().trim().length==0){
+		alert("제목을 입력해주세요.");
+		$('#title').focus();
+	}else if($('#content').val().trim().length==0){
+		alert("내용을 입력해주세요.");
+		$('#content').focus();
+	}else{
+		return true;
+	}
+	return false;
+}
+</script>
 </body>
 </html>

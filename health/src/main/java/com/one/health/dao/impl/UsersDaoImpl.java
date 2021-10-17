@@ -30,5 +30,16 @@ public class UsersDaoImpl implements UsersDao{
 		}
 		return false;
 	}
+
+	@Override
+	public boolean updateUsers(UsersDto user) {
+		int cnt = sqlSession.update(namespace+"updateUsers", user);
+		if(cnt>0)
+		{
+			return true;
+		}
+		return false;
+	}
+	
 	
 }

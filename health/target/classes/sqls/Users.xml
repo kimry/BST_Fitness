@@ -15,6 +15,12 @@
 	VALUES(#{id}, #{pw}, #{name}, #{age}, #{email}, #{phone}, #{auth})
 </insert>
 
+<update id="updateUsers" parameterType="com.one.health.dto.UsersDto">
+	UPDATE USERS
+	SET PW=#{pw},NAME=#{name},AGE=#{age},EMAIL=#{email},PHONE=#{phone},AUTH=#{auth}
+	WHERE ID=#{id}
+</update>
+
 </mapper>
 
 
