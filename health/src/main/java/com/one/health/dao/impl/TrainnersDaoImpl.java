@@ -36,4 +36,16 @@ public class TrainnersDaoImpl implements TrainnersDao{
 	public TrainnersDto getTrainner(String tid) {
 		return sqlSession.selectOne(namespace+"getTrainner", tid);
 	}
+
+	@Override
+	public List<TrainnersDto> getPTList() {
+		return sqlSession.selectList(namespace+"getPTList");
+	}
+
+	@Override
+	public List<TrainnersDto> getPLList() {
+		return sqlSession.selectList(namespace+"getPLList");
+	}
+	
+	
 }

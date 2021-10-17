@@ -9,4 +9,6 @@ public interface TrainnersDao {
 	boolean insertTrainners(TrainnersDto trainner);
 	List<TrainnersDto> getTrainnerList();
 	TrainnersDto getTrainner(String tid);
+	List<TrainnersDto> getPTList();
+	List<TrainnersDto> getPLList();
 }

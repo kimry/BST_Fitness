@@ -29,5 +29,16 @@ public class TrainnersServiceImpl implements TrainnersService{
 	public TrainnersDto getTrainner(String tid) {
 		return dao.getTrainner(tid);
 	}
+
+	@Override
+	public List<TrainnersDto> getPTList() {
+		return dao.getPTList();
+	}
+
+	@Override
+	public List<TrainnersDto> getPLList() {
+		return dao.getPLList();
+	}
+	
 	
 }

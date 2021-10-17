@@ -8,4 +8,6 @@ public interface TrainnersService {
 	boolean insertTrainners(TrainnersDto trainner);
 	List<TrainnersDto> getTrainnersList();
 	TrainnersDto getTrainner(String tid);
+	List<TrainnersDto> getPTList();
+	List<TrainnersDto> getPLList();
 }

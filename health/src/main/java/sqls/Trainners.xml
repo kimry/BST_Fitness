@@ -21,4 +21,15 @@
 	WHERE TID=#{tid}
 </select>
 
+<select id="getPTList" resultType="com.one.health.dto.TrainnersDto">
+	SELECT TID, NAME, FIELD, CAREER, CONTENT
+	FROM TRAINNERS
+	WHERE FIELD = 1
+</select>
+
+<select id="getPLList" resultType="com.one.health.dto.TrainnersDto">
+SELECT TID, NAME, FIELD, CAREER, CONTENT
+	FROM TRAINNERS
+	WHERE FIELD = 2
+</select>
 </mapper>

@@ -16,5 +16,6 @@ String id = user.getId();
 <a href="moveTrainnerList.do">TrainnerList</a>
 <a href="moveMypage.do">My page</a>
 <a href="qnalist.do">Q&A</a>
+<a href="moveReservationPT.do">ReservationPT</a>
 </body>
 </html>
