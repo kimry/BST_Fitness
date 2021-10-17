@@ -17,7 +17,7 @@
 
 <update id="updateUsers" parameterType="com.one.health.dto.UsersDto">
 	UPDATE USERS
-	SET PW=#{pw},NAME=#{name},AGE=#{age},EMAIL=#{email},PHONE=#{phone},AUTH=#{auth}
+	SET PW=#{pw},NAME=#{name},AGE=#{age},EMAIL=#{email},PHONE=#{phone}
 	WHERE ID=#{id}
 </update>
 
