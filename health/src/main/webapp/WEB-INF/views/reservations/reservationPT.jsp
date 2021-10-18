@@ -17,26 +17,12 @@ List<TrainnersDto> pilatesList = (List<TrainnersDto>)request.getAttribute("pl");
 <title>PT예약창</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<style type="text/css">
-table {
-  width: 80%;
-}
-</style>
+
 </head>
 
 <body>
 <%
 UsersDto dto = (UsersDto)session.getAttribute("login");
-String msg = (String)request.getParameter("msg");
-System.out.println(msg);
-if(msg!=null)
-{
-	%>
-	<script>
-	alert("<%= msg%>");
-	</script>
-	<%
-}
 if(dto == null){
 %>
    <script type="text/javascript">
@@ -52,20 +38,20 @@ if(dto == null){
    <th colspan="4">예약</th>
 </tr>
 <tr>
-   <th height="80">종목</th>
+   <th>종목</th>
    <th>선생님</th>
    <th>날짜</th>
    <th>시간</th>
 </tr>
 <tr>   
 
-   <th height="400">
+   <th>
    <button type="button" id="health" onclick="getTrainer()">헬스</button><br><br>
    <button type="button" id="pilates" onclick="getPilates()">필라테스</button>
    </th>
    
    <th>
-   <select id="tid" name="tid" size="10">
+   <select id="tid" name="tid" size="3">
    <%for(int i=0;i<trainerList.size();i++){%>
    <option value="<%=trainerList.get(i).getTid() %>"><%=trainerList.get(i).getName()%></option> 
    <%}%>

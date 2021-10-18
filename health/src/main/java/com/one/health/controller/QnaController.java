@@ -65,19 +65,20 @@ public class QnaController {
 		}
 		System.out.println(qnaPage);
 		model.addAttribute("qnaPage", qnaPage);
-						
-		return "qna/qnalist";		
+		model.addAttribute("content","qna/qnalist.jsp");
+		return "main";						
 	}
 	
 	@RequestMapping(value = "moveQnawrite.do", method = RequestMethod.GET)
 	public String qnawrite(Model model) {
 		logger.info("QnaController qnawrite " + new Date());
 		
-		return "qna/qnawrite";
+		model.addAttribute("content","qna/qnawrite.jsp");
+		return "main";
 	}
 	
 	@RequestMapping(value = "qnawriteAf.do", method = RequestMethod.POST)
-	public String qnawriteAf(QnaDto qna) {
+	public String qnawriteAf(Model model, QnaDto qna) {
 		logger.info("QnaController qnawriteAf " + new Date());
 		
 		boolean b = qservice.qnaWrite(qna);
@@ -85,7 +86,8 @@ public class QnaController {
 			return "redirect:/qnalist.do"; // controller
 		}
 		
-		return "qna/qnawrite"; //view
+		model.addAttribute("content","qna/qnawrite.jsp"); //view
+		return "main"; 
 	}
 	
 	
@@ -100,7 +102,8 @@ public class QnaController {
 		model.addAttribute("user", dto);
 		model.addAttribute("qnum", qnum);
 		
-		return "qna/qnadetail";
+		model.addAttribute("content","qna/qnadetail.jsp");
+		return "main"; 
 	}
 	
 	@RequestMapping(value = "moveQnaAnswer.do", method = RequestMethod.GET)
@@ -112,11 +115,12 @@ public class QnaController {
 		model.addAttribute("qna", qna);
 		model.addAttribute("qnum", qnum);
 		
-		return "qna/qnaanswer";
+		model.addAttribute("content","qna/qnaanswer.jsp");
+		return "main";
 	}
 	
 	@RequestMapping(value = "qnaanswerAf.do", method = RequestMethod.POST)
-	public String qnaanswerAf(int qnum, QnaDto qna) {
+	public String qnaanswerAf(Model model, int qnum, QnaDto qna) {
 		logger.info("QnaController qnaanswerAf " + new Date());
 		
 		boolean b = qservice.qnaAnswer(qna);
@@ -125,7 +129,8 @@ public class QnaController {
 			return "redirect:/qnalist.do";
 		}
 		
-		return "qna/qnalist";
+		model.addAttribute("content","qna/qnalist.jsp");
+		return "main";
 	}
 	
 	@RequestMapping(value = "qnaupdate.do", method = RequestMethod.GET)
@@ -136,7 +141,8 @@ public class QnaController {
 		
 		model.addAttribute("qna", qna);
 		
-		return "qna/qnaupdate";
+		model.addAttribute("content","qna/qnaupdate.jsp");
+		return "main";
 	}
 	
 	@RequestMapping(value = "qnaupdateAf.do", method = RequestMethod.POST)

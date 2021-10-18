@@ -46,10 +46,13 @@ table.type1 td {
 <h1>트레이너 수정페이지</h1>
 
 <div align="center">
-<form action="UpdateTrainnerAf.do" method="post">
+<form action="UpdateTrainnerAf.do" method="post" onsubmit="return check()">
 <input type="hidden" name="tid" value="<%=trainner.getTid() %>">
 <table class="type1">
-
+<tr>
+	<th>사진</th>
+	<td><img src="resources/images/trainer/<%=trainner.getTid() %>.jpg" width="400px" height="400px"></td>
+</tr>
 <tr>
 	<th>아이디</th>
 	<td>
@@ -119,17 +122,14 @@ table.type1 td {
 </div>
 
 <script>
-$(document).ready(function(){
-	if(<%=trainner.getField()%> == 1){
-		$("#sel").val("1").prop("selected", true);
-	}else if(<%=trainner.getField()%> == 2){
-		$("#sel").val("2").prop("selected", true);
-	}else{
-		$("#sel").val("0").prop("selected", true);
-	}
-	
-  $("#updateSuccess").mouseover(function(){
-    if($("#pw").val().trim() == "" ){
+function check(){
+	if($('#career').val().trim().length==0){
+		alert("career를 입력해주세요.");
+		$('#career').focus();
+	}else if($('#content').val().trim().length==0){
+		alert("내용을 입력해주세요.");
+		$('#content').focus();
+	}else if($("#pw").val().trim() == "" ){
     	alert('비밀번호를 입력해 주세요');
     	$("#pw").focus();
     }else if($("#name").val().trim() == "" ){
@@ -150,14 +150,21 @@ $(document).ready(function(){
     }else if($("#field").val().trim() == "" ){
     	alert('field를 입력해 주세요');
     	$("#field").focus();
-    }else if($("#career").val().trim() == "" ){
-    	alert('career를 입력해 주세요');
-    	$("#career").focus();
-    }else if($("#content").val().trim() == "" ){
-    	alert('content를 입력해 주세요');
-    	$("#content").focus();
-    }
-  });
+    }else{
+		return true;
+	}
+	return false;
+}
+
+$(document).ready(function(){
+	if(<%=trainner.getField()%> == 1){
+		$("#sel").val("1").prop("selected", true);
+	}else if(<%=trainner.getField()%> == 2){
+		$("#sel").val("2").prop("selected", true);
+	}else{
+		$("#sel").val("0").prop("selected", true);
+	}
+
   $("#updateSuccess").click(function(){
 	    
 	  $.cookie("userId", $("#id").val().trim(), { expires:7, path:'./' });

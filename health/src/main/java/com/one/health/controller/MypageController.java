@@ -37,7 +37,7 @@ public class MypageController {
 	private static Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
 	@RequestMapping(value="moveMypage.do")
-	public String moveMypage(HttpSession session) {
+	public String moveMypage(Model model, HttpSession session) {
 		logger.info("MypageController moveMypage " + new Date());
 		UsersDto user = (UsersDto)session.getAttribute("login");
 		
@@ -49,7 +49,8 @@ public class MypageController {
 		{
 			return "redirect:/moveTrainerMypage.do";
 		}
-		return "main"; 
+		model.addAttribute("content","init.jsp.jsp");
+		return "main";
 	}
 	
 	@RequestMapping(value = "moveTrainerMypage.do", method = RequestMethod.GET)
@@ -66,7 +67,8 @@ public class MypageController {
 		model.addAttribute("user", user);
 		model.addAttribute("trainner", trainner);
 		
-		return "mypage/tmypage";
+		model.addAttribute("content","mypage/tmypage.jsp");
+		return "main";
 	}
 	
 	@RequestMapping(value = "moveUpdateTrainner.do", method = RequestMethod.GET)
@@ -82,7 +84,8 @@ public class MypageController {
 		model.addAttribute("user", user);
 		model.addAttribute("trainner", trainner);
 		
-		return "mypage/updatetmypage";
+		model.addAttribute("content","mypage/updatetmypage.jsp");
+		return "main";
 	}
 	
 	@RequestMapping(value = "UpdateTrainnerAf.do", method = RequestMethod.POST)
@@ -114,7 +117,8 @@ public class MypageController {
 		model.addAttribute("user", user);
 		model.addAttribute("member", member);
 		
-		return "mypage/mmypage";
+		model.addAttribute("content","mypage/mmypage.jsp");
+		return "main";
 	}
 	
 	@RequestMapping(value = "moveUpdateMember.do", method = RequestMethod.GET)
@@ -130,7 +134,8 @@ public class MypageController {
 		model.addAttribute("user", user);
 		model.addAttribute("member", member);
 		
-		return "mypage/updatemmypage";
+		model.addAttribute("content","mypage/updatemmypage.jsp");
+		return "main";
 	}
 	
 	@RequestMapping(value = "UpdateMemberAf.do", method = RequestMethod.POST)

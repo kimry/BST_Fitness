@@ -46,7 +46,7 @@ table.type1 td {
 <h1>고객 수정페이지</h1>
 
 <div align="center">
-<form action="UpdateMemberAf.do" method="post">
+<form action="UpdateMemberAf.do" method="post" onsubmit="return check()">
 <input type="hidden" name="mid" value="<%=member.getMid() %>">
 <table class="type1">
 
@@ -97,9 +97,8 @@ table.type1 td {
 </div>
 
 <script>
-$(document).ready(function(){
-  $("#updateSuccess").mouseover(function(){
-    if($("#pw").val().trim() == "" ){
+function check(){
+	if($("#pw").val().trim() == "" ){
     	alert('비밀번호를 입력해 주세요');
     	$("#pw").focus();
     }else if($("#name").val().trim() == "" ){
@@ -117,8 +116,12 @@ $(document).ready(function(){
     }else if($("#phone").val().trim() == "" ){
     	alert('휴대전화 번호를 입력해 주세요');
     	$("#phone").focus();
-    }
-  });
+    }else{
+		return true;
+	}
+	return false;
+}
+$(document).ready(function(){
   $("#updateSuccess").click(function(){
 	    
 	  $.cookie("userId", $("#id").val().trim(), { expires:7, path:'./' });

@@ -34,6 +34,12 @@ public class UsersController {
 	@Autowired
 	TrainnersService tService;
 	
+	@RequestMapping(value = "moveInit.do")
+	public String moveInit(Model model) {
+		model.addAttribute("content","init.jsp");
+		return "main";
+	}
+	
 	@RequestMapping(value = "moveLogin.do", method = RequestMethod.GET)
 	public String moveLogin() {
 		logger.info("UsersController moveLogin " + new Date());
@@ -49,7 +55,7 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
-	public String login(String id, String pw, HttpSession session, HttpServletRequest req) {
+	public String login(Model model, String id, String pw, HttpSession session, HttpServletRequest req) {
 		logger.info("UsersController login " + new Date());
 		
 		UsersDto dto = uService.getUsers(id);
@@ -59,6 +65,7 @@ public class UsersController {
 			{
 				req.getSession().setAttribute("login", dto);
 				req.getSession().setMaxInactiveInterval(60 * 60 * 2);
+				model.addAttribute("content","init.jsp");
 				return "main";
 			}
 		}

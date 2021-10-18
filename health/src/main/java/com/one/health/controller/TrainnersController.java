@@ -36,7 +36,8 @@ public class TrainnersController {
 		
 		List<TrainnersDto> trainnerList = tService.getTrainnersList();
 		model.addAttribute("trainnerList",trainnerList);
-		return "trainners/trainnerList";
+		model.addAttribute("content","trainners/trainnerList.jsp");
+		return "main";	
 	}
 	
 	@RequestMapping(value = "moveTrainnerView.do")
@@ -47,7 +48,8 @@ public class TrainnersController {
 		List<ReviewsDto> reviewList = rService.getReviewList(tid); 
 		model.addAttribute("trainner",trainner);
 		model.addAttribute("reviewList", reviewList);
-		return "trainners/trainnerView";
+		model.addAttribute("content","trainners/trainnerView.jsp");
+		return "main";	
 	}
 	
 	@RequestMapping(value = "moveReviewWrite.do")
@@ -56,7 +58,8 @@ public class TrainnersController {
 		
 		TrainnersDto trainner = tService.getTrainner(tid);
 		model.addAttribute("trainner",trainner);
-		return "trainners/reviewWrite";
+		model.addAttribute("content","trainners/reviewWrite.jsp");
+		return "main";	
 	}
 	
 	@RequestMapping(value="reviewWrite.do")
@@ -78,7 +81,8 @@ public class TrainnersController {
 		model.addAttribute("review",review);
 		model.addAttribute("trainer",trainer);
 		model.addAttribute("member",member);
-		return "trainners/reviewView";
+		model.addAttribute("content","trainners/reviewView.jsp");
+		return "main";	
 	}
 	
 	@RequestMapping(value="upRcm.do")

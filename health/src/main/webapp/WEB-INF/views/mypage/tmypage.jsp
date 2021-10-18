@@ -48,6 +48,10 @@ table.type1 td {
 <table class="type1">
 
 <tr>
+	<th>사진</th>
+	<td><img src="resources/images/trainer/<%=trainner.getTid() %>.jpg" width="400px" height="400px"></td>
+</tr>
+<tr>
 	<th>아이디</th>
 	<td>
 		<input type="text"  size="50px" value="<%=user.getId()%>" readonly="readonly">

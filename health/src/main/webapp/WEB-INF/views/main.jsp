@@ -10,12 +10,24 @@
 <body>
 <%
 UsersDto user = (UsersDto)request.getSession().getAttribute("login");
-String id = user.getId();
+
+String content = (String)request.getAttribute("content");
+System.out.println(content);
 %>
-<p>main</p>
-<a href="moveTrainnerList.do">TrainnerList</a>
-<a href="moveMypage.do">My page</a>
-<a href="qnalist.do">Q&A</a>
-<a href="moveReservationPT.do">ReservationPT</a>
+<jsp:include page="menu.jsp" flush="false"/>
+<jsp:include page="<%=content %>" flush="false"/>
+
+<%
+String msg = (String)request.getParameter("msg");
+System.out.println(msg);
+if(msg!=null)
+{
+	%>
+	<script>
+	alert("<%= msg%>");
+	</script>
+	<%
+}
+%>
 </body>
 </html>

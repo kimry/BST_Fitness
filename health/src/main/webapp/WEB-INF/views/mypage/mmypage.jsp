@@ -89,9 +89,9 @@ table.type1 td {
 	</td>
 </tr>
 <tr>
-	<th>RENT</th>
+	<th>결제정보</th>
 	<td>
-		<input type="text" size="50px" value="<%=member.getRent()%>" readonly="readonly">
+		<input type="text" size="50px" value="<%=member.getPrice()%>원" readonly="readonly">
 	</td>
 </tr>
 <tr>
