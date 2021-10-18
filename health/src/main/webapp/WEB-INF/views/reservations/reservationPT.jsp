@@ -27,6 +27,16 @@ table {
 <body>
 <%
 UsersDto dto = (UsersDto)session.getAttribute("login");
+String msg = (String)request.getParameter("msg");
+System.out.println(msg);
+if(msg!=null)
+{
+	%>
+	<script>
+	alert("<%= msg%>");
+	</script>
+	<%
+}
 if(dto == null){
 %>
    <script type="text/javascript">

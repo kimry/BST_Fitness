@@ -1,5 +1,7 @@
 package com.one.health.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,16 @@ public class PTSServiceImpl implements PTSService{
 	@Override
 	public boolean insertPT(PTSDto pts) {
 		return dao.insertPT(pts);
+	}
+
+	@Override
+	public List<PTSDto> getTimeList(PTSDto pts) {
+		return dao.getTimeList(pts);
+	}
+
+	@Override
+	public PTSDto getTime(PTSDto pts) {
+		return dao.getTime(pts);
 	}
 	
 }

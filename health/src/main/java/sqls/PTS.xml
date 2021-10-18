@@ -9,4 +9,16 @@
 	INSERT INTO PTSCHEDULE(SNUM, TID, MID, PTDATE, TIMES)
 	VALUES(SEQ_SNUM.NEXTVAL, #{tid}, #{mid}, #{ptdate}, #{time})
 </insert>
+
+<select id="getTimeList" parameterType="com.one.health.dto.PTSDto" resultType="com.one.health.dto.PTSDto">
+	SELECT SNUM, TID, MID, PTDATE, TIMES
+	FROM PTSCHEDULE
+	WHERE TID=#{tid} AND PTDATE=#{ptdate}
+</select>
+
+<select id="getTime" parameterType="com.one.health.dto.PTSDto" resultType="com.one.health.dto.PTSDto">
+	SELECT SNUM, TID, MID, PTDATE, TIMES
+	FROM PTSCHEDULE
+	WHERE TID=#{tid} AND PTDATE=#{ptdate} AND TIMES=#{time}
+</select>
 </mapper>

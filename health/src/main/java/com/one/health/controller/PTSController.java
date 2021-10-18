@@ -31,8 +31,14 @@ public class PTSController {
 	}
 	
 	@RequestMapping(value="addPT.do")
-	public String addPT(PTSDto pts) {
-		
+	public String addPT(Model model, PTSDto pts) {
+		System.out.println("tid : "+pts.getTid());
+		if(ptService.getTime(pts)!=null)
+		{
+			String temp="이미 예약된 시간입니다.";
+			model.addAttribute("msg",temp);
+			return "redirect:/moveReservationPT.do";
+		}
 		ptService.insertPT(pts);
 		return "main";
 	}
