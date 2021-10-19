@@ -7,4 +7,6 @@ public interface MembersService {
 	MembersDto getMembers(String mid);
 	boolean updateMember(MembersDto member);
 	void updateMembers(MembersDto member);
+	boolean downPt(String mid);
+	boolean downFl(String mid);
 }

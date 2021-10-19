@@ -30,7 +30,17 @@ public class MembersServiceImpl implements MembersService{
 	
 	@Override
 	public void updateMembers(MembersDto member) {
-		dao.updateMembers(member);
-		
+		dao.updateMembers(member);	
 	}
+
+	@Override
+	public boolean downPt(String mid) {
+		return dao.downPt(mid);
+	}
+
+	@Override
+	public boolean downFl(String mid) {
+		return dao.downFl(mid);
+	}
+	
 }

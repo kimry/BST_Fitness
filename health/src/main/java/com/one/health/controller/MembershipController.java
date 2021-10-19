@@ -3,18 +3,21 @@ package com.one.health.controller;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 import com.one.health.dto.MembersDto;
 import com.one.health.dto.MembershipDto;
+import com.one.health.dto.TrainnersDto;
+import com.one.health.dto.UsersDto;
 import com.one.health.service.MembersService;
 import com.one.health.service.MembershipService;
 
@@ -29,10 +32,20 @@ public class MembershipController {
 	
 	
 	@RequestMapping(value = "moveMembership.do")
-	public String moveMembership(Model model) {
-		logger.info("MembershipController moveMembership " + new Date());
-		
-		model.addAttribute("content","reservations/membership.jsp");
+	public String moveMembership(Model model, HttpSession session) {
+		UsersDto user = (UsersDto)session.getAttribute("login");
+		if(user.getAuth()==1)
+		{
+
+			model.addAttribute("content","reservations/membership.jsp");
+		}
+		else if(user.getAuth()==2)
+		{
+			String temp="트레이너는 맴버쉽 페이지에 들어갈 수 없습니다.";
+			model.addAttribute("msg",temp);
+			return "redirect:/moveInit.do";
+		}
+
 		return "main";
 	}
 	

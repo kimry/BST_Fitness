@@ -28,6 +28,16 @@
 	WHERE MID =#{mid}
 </update>
 
+<update id="downPt" parameterType="java.lang.String">
+	UPDATE MEMBERS
+	SET PTPOINT = PTPOINT-1
+	WHERE MID =#{mid}
+</update>
 
+<update id="downFl" parameterType="java.lang.String">
+	UPDATE MEMBERS
+	SET FLPOINT= FLPOINT-1
+	WHERE MID =#{mid}
+</update>
 
 </mapper>

@@ -42,9 +42,30 @@ public class MembersDaoImpl implements MembersDao{
 	
 	@Override
 	public void updateMembers(MembersDto member) {
-		System.out.println(sqlSession.update(namespace + "updateMembers", member));
 		sqlSession.update(namespace + "updateMembers", member);
 		
 	}
+
+	@Override
+	public boolean downPt(String mid) {
+		int cnt = sqlSession.update(namespace + "downPt",mid);
+		if(cnt>0)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean downFl(String mid) {
+		int cnt = sqlSession.update(namespace + "downFl",mid);
+		if(cnt>0)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	
 
 }
