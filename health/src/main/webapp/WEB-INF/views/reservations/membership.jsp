@@ -17,10 +17,6 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 <h2>Membership Reservation</h2>
 <form action ="membership.do" method="post">
 
-<input type = "hidden" name="ptpoint" id= "ptpoint">
-<input type = "hidden" name="flpoint" id= "flpoint">
-<input type = "hidden" name="price" id= "price">
-
 <table border="1">
 <tr>
 	<th>기간</th>
@@ -33,7 +29,7 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 			<input type="hidden" name="mbsName" value="<%=user.getName() %>">
 			<!-- <input type="text" name="id" value="1" size="20"> -->
 			<select id = "time" name="time">
-				<option value = "0">없음</option>
+				<option value = "0" selected>없음</option>
 				<option value = "1">1일권</option>
 				<option value = "2">한달</option>
 				<option value = "3">3개월</option>	
@@ -44,14 +40,14 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 
  	 <td>
 		<select id="Todo" name = "Todo">
-			<option value = "0">없음</option>
+			<option value = "0" selected>없음</option>
 			<option value = "1">PT</option>
 			<option value = "2">필라테스</option>
 		</select>
 	</td>
 	<td>
 		<select id="point" name = "point">
-			<option value = "0">0회</option>
+			<option value = "0" selected>0회</option>
 			<option value ="1">10회</option>
 			<option value ="2">20회</option>
 			<option value ="3">30회</option>
@@ -64,7 +60,9 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 </table>
 
 
-
+가격 : <input type="text" name="price" id="price" value="0" readonly="readonly"><br>
+PT 포인트 : <input type = "text" name="ptpoint" id= "ptpoint" value="0" readonly="readonly"><br>
+필라테스 포인트 : <input type = "text" name="flpoint" id= "flpoint" value="0" readonly="readonly"><br>
 <input type="submit" value="선택완료" >
 </form>
 </div>
@@ -72,13 +70,13 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 
 
 <script type="text/javascript">
+let ptpoint = 0;
+let flpoint = 0;
+let membershipprice = 0;
+let ptprice = 0;
 $(document).ready(function(){
-	let ptpoint = 0;
-	let flpoint = 0;
-	let membershipprice = 0;
-	let ptprice = 0;
-	 	$('#time').on('change', function(){
-		let time = $('#time option:selected').val();
+	$('#time').on('change', function(){
+	let time = $('#time option:selected').val();
 		switch(time){
 			case "0":
 				membershipprice =  0;
@@ -98,71 +96,79 @@ $(document).ready(function(){
 			case "5":
 				membershipprice = 300000;
 				break;
-			}	
+		}	
 		$("#price").val(ptprice + membershipprice); 
-		}); 
-	
-		$('#point').on('change', function(){
-			let point= $('#point option:selected').val();
+	});
+	$('#Todo').on('change', function(){
+		let point= $('#point option:selected').val();
+		$("#point option:eq(0)").prop("selected", true);
+		ptprice = 0;
+		flpoint = 0;
+		ptpoint = 0;
+		$("#ptpoint").val(ptpoint);
+		$("#flpoint").val(flpoint);
+		$("#price").val(ptprice + membershipprice); 
+	});
+	$('#point').on('change', function(){
+		let point= $('#point option:selected').val();
+		if($('#Todo').val()!=0){
 			switch(point){
-			case "0":
-				break;
-			case "1":
-				ptprice = 100000;
-				if($('#Todo').val() == 1){
-					ptpoint = 10;
+				case "0":
+					ptprice = 0;
 					flpoint = 0;
-				}
-				else if($('#Todo').val() == 2){
-					flpoint = 10;
 					ptpoint = 0;
-				} 
-				break;
-			case "2":
-				ptprice = 200000;
-				
-				if($('#Todo').val() == 1){
-					ptpoint = 20;
-					flpoint = 0;
-				}
-				else if($('#Todo').val() == 2){
-					flpoint = 20;
-					ptpoint = 0;
-				} 
-				break;
-			case "3":
-				ptprice = 300000;
-				if($('#Todo').val() == 1){
-					ptpoint = 30;
-					flpoint = 0;
-				}
-				else if($('#Todo').val() == 2){
-					flpoint = 30;
-					ptpoint = 0;
-				} 
-				break;
-			case "4":
-				ptprice = 400000;
-				if($('#Todo').val() == 1){
-					ptpoint = 50;
-					flpoint = 0;
-				}
-				else if($('#Todo').val() == 2){
-					flpoint = 50;
-					ptpoint = 0;
-				} 
-				break;
+					break;
+				case "1":
+					ptprice = 100000;
+					if($('#Todo').val() == 1){
+						ptpoint = 10;
+						flpoint = 0;
+					}
+					else if($('#Todo').val() == 2){
+						flpoint = 10;
+						ptpoint = 0;
+					} 
+					break;
+				case "2":
+					ptprice = 200000;
+					
+					if($('#Todo').val() == 1){
+						ptpoint = 20;
+						flpoint = 0;
+					}
+					else if($('#Todo').val() == 2){
+						flpoint = 20;
+						ptpoint = 0;
+					} 
+					break;
+				case "3":
+					ptprice = 300000;
+					if($('#Todo').val() == 1){
+						ptpoint = 30;
+						flpoint = 0;
+					}
+					else if($('#Todo').val() == 2){
+						flpoint = 30;
+						ptpoint = 0;
+					} 
+					break;
+				case "4":
+					ptprice = 400000;
+					if($('#Todo').val() == 1){
+						ptpoint = 50;
+						flpoint = 0;
+					}
+					else if($('#Todo').val() == 2){
+						flpoint = 50;
+						ptpoint = 0;
+					} 
+					break;
 			}
-			
-			$("#ptpoint").val(ptpoint);
-			$("#flpoint").val(flpoint);
-		
-			$("#price").val(ptprice + membershipprice); 
-		});
-		
-		
-
-
+		}
+		$("#ptpoint").val(ptpoint);
+		$("#flpoint").val(flpoint);
+		$("#price").val(ptprice + membershipprice); 
+	});		
 });
 
 

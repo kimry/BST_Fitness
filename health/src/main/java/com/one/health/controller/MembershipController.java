@@ -85,9 +85,10 @@ public class MembershipController {
 	String mid = mbsId;
 	System.out.println(mid+""+ptpoint+flpoint+price);
 	mService.updateMembers(new MembersDto(mid, "", ptpoint, flpoint, 0, price));
+	String temp="충전 정보가 저장되었습니다.";
+	model.addAttribute("msg",temp);
 	model.addAttribute("content","init.jsp");
-	return "main";
-	
+	return "redirect:/moveInit.do";
 	}
 	
 }
