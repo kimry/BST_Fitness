@@ -26,8 +26,8 @@ List<ReviewsDto> reviewList = (List<ReviewsDto>)request.getAttribute("reviewList
 		<td>
 		이름 : <%= trainner.getName()%><br><br>
 		분야 : <%= trainner.getField()==1?"pt트레이너":"필라테스"%><br><br>
-		양력 : <%= trainner.getCareer()%><br><br>
-		한마디 : <%= trainner.getContent()%><br><br>
+		양력 :<br><%= trainner.getCareer().replace("\n","<br>")%><br><br>
+		한마디 :<br><%= trainner.getContent().replace("\n","<br>")%><br><br>
 		</td>
 	</tr>
 </table>
