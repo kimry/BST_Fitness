@@ -5,18 +5,18 @@ public class PTSDto {
 	private String tid;
 	private String mid;
 	private String ptdate;
-	private int time;
+	private int times;
 	
 	public PTSDto() {
 		
 	}
 	
-	public PTSDto(int snum, String tid, String mid, String ptdate, int time) {
+	public PTSDto(int snum, String tid, String mid, String ptdate, int times) {
 		this.snum = snum;
 		this.tid = tid;
 		this.mid = mid;
 		this.ptdate = ptdate;
-		this.time = time;
+		this.times = times;
 	}
 
 
@@ -52,17 +52,17 @@ public class PTSDto {
 		this.ptdate = ptdate;
 	}
 
-	public int getTime() {
-		return time;
+	public int getTimes() {
+		return times;
 	}
 
-	public void setTime(int time) {
-		this.time = time;
+	public void setTimes(int times) {
+		this.times = times;
 	}
 
 	@Override
 	public String toString() {
-		return "PTSDto [snum=" + snum + ", tid=" + tid + ", mid=" + mid + ", ptdate=" + ptdate + ", time=" + time + "]";
+		return "PTSDto [snum=" + snum + ", tid=" + tid + ", mid=" + mid + ", ptdate=" + ptdate + ", times=" + times + "]";
 	}
 	
 }

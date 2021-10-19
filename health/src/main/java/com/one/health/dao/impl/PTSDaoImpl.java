@@ -30,5 +30,18 @@ public class PTSDaoImpl implements PTSDao{
 	public PTSDto getTime(PTSDto pts) {
 		return sqlSession.selectOne(namespace+"getTime",pts);
 	}
+	@Override
+	public List<PTSDto> getTodayList(String mid) {
+		return sqlSession.selectList(namespace+"getTodayList", mid);
+	}
+	@Override
+	public List<PTSDto> getUpcomingList(String mid) {
+		return sqlSession.selectList(namespace+"getUpcomingList", mid);
+	}
+	@Override
+	public List<PTSDto> getPastList(String mid) {
+		return sqlSession.selectList(namespace+"getPastList", mid);
+	}
+	
 
 }

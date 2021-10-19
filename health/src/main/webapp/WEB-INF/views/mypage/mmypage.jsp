@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.one.health.dto.PTSDto"%>
 <%@page import="com.one.health.dto.MembersDto"%>
 <%@page import="com.one.health.dto.UsersDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,6 +8,9 @@
 <%
 UsersDto user = (UsersDto)request.getAttribute("user");
 MembersDto member = (MembersDto)request.getAttribute("member");
+List<PTSDto> today = (List<PTSDto>)request.getAttribute("today");
+List<PTSDto> upcoming = (List<PTSDto>)request.getAttribute("upcoming");
+List<PTSDto> past = (List<PTSDto>)request.getAttribute("past");
 %>
 <!DOCTYPE html>
 <html>
@@ -99,7 +104,72 @@ table.type1 td {
 		<button type="button" onclick="updateMember('<%=user.getId() %>')">정보수정</button>
 	</td>
 </tr>
-
+</table>
+금일 예약 현황
+<table border="1">
+	<tr>
+		<td>예약번호</td>
+		<td>강사ID</td>
+		<td>예약일</td>
+		<td>시간</td>
+	</tr>
+	<%
+	for(int i=0;i<today.size();i++)
+	{
+		%>
+		<tr>
+			<td><%=today.get(i).getSnum() %></td>
+			<td><%=today.get(i).getTid() %></td>
+			<td><%=today.get(i).getPtdate().substring(0,10) %></td>
+			<td><%=today.get(i).getTimes() %></td>
+		</tr>
+		<%
+	}
+	%>
+</table>
+예정된 예약 현황
+<table border="1">
+	<tr>
+		<td>예약번호</td>
+		<td>강사ID</td>
+		<td>예약일</td>
+		<td>시간</td>
+	</tr>
+	<%
+	for(int i=0;i<upcoming.size();i++)
+	{
+		%>
+		<tr>
+			<td><%=upcoming.get(i).getSnum() %></td>
+			<td><%=upcoming.get(i).getTid() %></td>
+			<td><%=upcoming.get(i).getPtdate().substring(0,10) %></td>
+			<td><%=upcoming.get(i).getTimes() %></td>
+		</tr>
+		<%
+	}
+	%>
+</table>
+지나간 예약 현황
+<table border="1">
+	<tr>
+		<td>예약번호</td>
+		<td>강사ID</td>
+		<td>예약일</td>
+		<td>시간</td>
+	</tr>
+	<%
+	for(int i=0;i<past.size();i++)
+	{
+		%>
+		<tr>
+			<td><%=past.get(i).getSnum() %></td>
+			<td><%=past.get(i).getTid() %></td>
+			<td><%=past.get(i).getPtdate().substring(0,10) %></td>
+			<td><%=past.get(i).getTimes() %></td>
+		</tr>
+		<%
+	}
+	%>
 </table>
 
 </div>

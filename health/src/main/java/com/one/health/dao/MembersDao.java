@@ -11,3 +11,4 @@ public interface MembersDao {
 	boolean downPt(String mid);
 	boolean downFl(String mid);
 }
+

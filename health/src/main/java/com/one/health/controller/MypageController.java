@@ -3,6 +3,7 @@ package com.one.health.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.one.health.dto.MembersDto;
+import com.one.health.dto.PTSDto;
 import com.one.health.dto.TrainnersDto;
 import com.one.health.dto.UsersDto;
 import com.one.health.service.MembersService;
+import com.one.health.service.PTSService;
 import com.one.health.service.TrainnersService;
 import com.one.health.service.UsersService;
 
@@ -38,6 +41,9 @@ public class MypageController {
 	@Autowired
 	UsersService uservice;
 	
+	@Autowired
+	PTSService ptService;
+	
 	private static Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
 	@RequestMapping(value="moveMypage.do")
@@ -53,7 +59,7 @@ public class MypageController {
 		{
 			return "redirect:/moveTrainerMypage.do";
 		}
-		model.addAttribute("content","init.jsp.jsp");
+		model.addAttribute("content","init.jsp");
 		return "main";
 	}
 	
@@ -113,11 +119,16 @@ public class MypageController {
 		
 		UsersDto user = (UsersDto)session.getAttribute("login");
 		
-		String mid = user.getId();
-		MembersDto member = mservice.getMembers(mid);
+		MembersDto member = mservice.getMembers(user.getId());
+		List<PTSDto> today = ptService.getTodayList(user.getId());
+		List<PTSDto> upcoming = ptService.getUpcomingList(user.getId());
+		List<PTSDto> past = ptService.getPastList(user.getId());
 		
 		model.addAttribute("user", user);
 		model.addAttribute("member", member);
+		model.addAttribute("today", today);
+		model.addAttribute("upcoming",upcoming);
+		model.addAttribute("past", past);
 		
 		model.addAttribute("content","mypage/mmypage.jsp");
 		return "main";

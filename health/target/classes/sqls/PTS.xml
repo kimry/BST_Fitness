@@ -7,7 +7,7 @@
 
 <insert id="insertPT" parameterType="com.one.health.dto.PTSDto">
 	INSERT INTO PTSCHEDULE(SNUM, TID, MID, PTDATE, TIMES)
-	VALUES(SEQ_SNUM.NEXTVAL, #{tid}, #{mid}, #{ptdate}, #{time})
+	VALUES(SEQ_SNUM.NEXTVAL, #{tid}, #{mid}, #{ptdate}, #{times})
 </insert>
 
 <select id="getTimeList" parameterType="com.one.health.dto.PTSDto" resultType="com.one.health.dto.PTSDto">
@@ -19,6 +19,24 @@
 <select id="getTime" parameterType="com.one.health.dto.PTSDto" resultType="com.one.health.dto.PTSDto">
 	SELECT SNUM, TID, MID, PTDATE, TIMES
 	FROM PTSCHEDULE
-	WHERE TID=#{tid} AND PTDATE=#{ptdate} AND TIMES=#{time}
+	WHERE TID=#{tid} AND PTDATE=#{ptdate} AND TIMES=#{times}
+</select>
+
+<select id="getTodayList" parameterType="java.lang.String" resultType="com.one.health.dto.PTSDto">
+	SELECT SNUM, TID, MID, PTDATE, TIMES
+	FROM PTSCHEDULE
+	WHERE MID=#{mid} AND PTDATE = TO_DATE(TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+</select>
+
+<select id="getUpcomingList" parameterType="java.lang.String" resultType="com.one.health.dto.PTSDto">
+	SELECT SNUM, TID, MID, PTDATE, TIMES
+	FROM PTSCHEDULE
+	WHERE MID=#{mid} AND PTDATE > TO_DATE(TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+</select>
+
+<select id="getPastList" parameterType="java.lang.String" resultType="com.one.health.dto.PTSDto">
+	SELECT SNUM, TID, MID, PTDATE, TIMES
+	FROM PTSCHEDULE
+	WHERE MID=#{mid} AND TO_DATE(TO_CHAR(SYSDATE,'YYYY-MM-DD')) > PTDATE
 </select>
 </mapper>

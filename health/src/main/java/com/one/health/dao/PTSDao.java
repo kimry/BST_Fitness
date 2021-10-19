@@ -8,4 +8,7 @@ public interface PTSDao {
 	boolean insertPT(PTSDto pts);
 	List<PTSDto> getTimeList(PTSDto pts);
 	PTSDto getTime(PTSDto pts);
+	List<PTSDto> getTodayList(String mid);
+	List<PTSDto> getUpcomingList(String mid);
+	List<PTSDto> getPastList(String mid);
 }
