@@ -88,7 +88,7 @@ table.type1 td {
 	</td>
 </tr>
 <tr>
-	<th>field</th>
+	<th>분야</th>
 	<td>
 		<%if(trainner.getField() == 1){
 		%>
@@ -107,13 +107,13 @@ table.type1 td {
 	</td>
 </tr>
 <tr>
-	<th>career</th>
+	<th>양력</th>
 	<td>
 		<textarea rows="10" cols="50px" readonly="readonly"><%=trainner.getCareer()%></textarea>
 	</td>
 </tr>
 <tr>
-	<th>content</th>
+	<th>한마디</th>
 	<td>
 		<textarea rows="10" cols="50px" readonly="readonly"><%=trainner.getContent()%></textarea>
 	</td>

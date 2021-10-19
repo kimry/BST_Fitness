@@ -90,7 +90,7 @@ table.type1 td {
 	</td>
 </tr>
 <tr>
-	<th>field</th>
+	<th>분야</th>
 	<td>
 		<select name="field" id="sel">
 			<option value="0">선택해주세요</option>
@@ -100,13 +100,13 @@ table.type1 td {
 	</td>
 </tr>
 <tr>
-	<th>career</th>
+	<th>양력</th>
 	<td>
 		<textarea rows="10" cols="50px" id="career" name="career"><%=trainner.getCareer()%></textarea>
 	</td>
 </tr>
 <tr>
-	<th>content</th>
+	<th>한마디</th>
 	<td>
 		<textarea rows="10" cols="50px" id="content" name="content"><%=trainner.getCareer()%></textarea>
 	</td>

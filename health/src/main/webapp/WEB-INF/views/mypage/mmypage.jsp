@@ -82,7 +82,7 @@ table.type1 td {
 	</td>
 </tr>
 <tr>
-	<th>퍼스널트레이닝 포인트</th>
+	<th>PT 포인트</th>
 	<td>
 		<input type="text" size="50px" value="<%=member.getPtpoint()%>" readonly="readonly">
 	</td>

@@ -78,7 +78,7 @@ if(dto == null){
     </th>
    
     <th>
-    <select name="time">
+    <select name="times">
     <option value="6">06:00</option>
     <option value="7">07:00</option>
     <option value="8">08:00</option>
