@@ -23,7 +23,7 @@ for(int i=0;i<trainnerList.size();i++)
 	
 	%>
 	<td>
-	<img class="trainner" id="<%=trainnerList.get(i).getTid() %>" src="resources/images/trainer/<%=trainnerList.get(i).getTid() %>.jpg" width="200px" height="200px"><br>
+	<img class="trainner" id="<%=trainnerList.get(i).getTid() %>" src="resources/images/trainer/<%=trainnerList.get(i).getTid() %>.jpg" width="200px" height="200px" onerror="this.src='resources/images/trainer/null.jpg'"><br>
 	이름 : <%=trainnerList.get(i).getName()%><br>
 	분야 : <%=trainnerList.get(i).getField()==1?"pt트레이너":"필라테스" %>
 	</td>

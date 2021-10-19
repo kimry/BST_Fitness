@@ -1,10 +1,13 @@
 package com.one.health.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.function.ServerResponse.SseBuilder;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.one.health.dto.MembersDto;
 import com.one.health.dto.TrainnersDto;
@@ -93,8 +97,6 @@ public class MypageController {
 		
 		logger.info("MypageController moveUpdateTrainner " + new Date());
 		
-		System.out.println(user.toString());
-		System.out.println(trainner.toString());
 		uservice.updateUsers(user);
 		tservice.updateTrainner(trainner);
 		UsersDto dto = uservice.getUsers(user.getId());
@@ -143,8 +145,6 @@ public class MypageController {
 		
 		logger.info("MypageController UpdateMemberAf " + new Date());
 		
-		System.out.println(user.toString());
-		System.out.println(member.toString());
 		uservice.updateUsers(user);
 		mservice.updateMember(member);
 		UsersDto dto = uservice.getUsers(user.getId());
@@ -152,6 +152,35 @@ public class MypageController {
 		
 		return "redirect:/moveMemberMypage.do";
 		
+	}
+	
+	@RequestMapping(value = "upload.do", method = RequestMethod.POST)
+	public String upload(@RequestParam(value = "fileload", required = false) MultipartFile fileload, HttpServletRequest req) {
+		
+		// filename(원본)취득
+		UsersDto user = (UsersDto)req.getSession().getAttribute("login");
+		String filename = user.getId()+".jpg";
+		System.out.println(filename);
+		
+		// upload 경로설정
+		// server(tomcat) <- 진짜!
+		String fupload = req.getServletContext().getRealPath("/resources/images/trainer");
+		
+		System.out.println("fupload:" + fupload);
+		
+		// 파일명이 충돌되지 않도록 파일명을 변경
+		File file = new File(fupload + "/" + filename); 
+				
+		try {
+			// 폴더에 실제 업로드
+			FileUtils.writeByteArrayToFile(file, fileload.getBytes());
+			
+			
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}		
+				
+		return "redirect:/moveMypage.do";
 	}
 }
 

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Membership">
+
+<insert id="insertMembership" parameterType="com.one.health.dto.MembershipDto">
+	INSERT INTO MEMBERSHIP(MBSID, MBSNAME, SDATE, EDATE)
+	VALUES(#{mbsId}, #{mbsName}, #{sdate}, #{edate})
+</insert>
+
+<select id="selectMembership" resultType="com.one.health.dto.MembershipDto">
+	SELECT MBSID
+	FROM MEMBERSHIP
+	WHERE MBSID=#{mbsId} AND TO_CHAR(EDATE, 'YYMMDD')   <![CDATA[ < ]]>  TO_CHAR(SYSDATE, 'YYMMDD')
+</select>
+
+<update id="updateMembership" parameterType="com.one.health.dto.MembershipDto">
+
+	UPDATE MEMBERSHIP
+	SET EDATE = SYSDATE, SDATE = SYSDATE
+	WHERE MBSID = #{mbsId} 
+	
+</update>
+
+
+<update id="updateMembershipDay" parameterType="com.one.health.dto.MembershipDto">
+	UPDATE MEMBERSHIP
+	SET EDATE = EDATE+(INTERVAL '1' DAY)
+	WHERE MBSID = #{mbsId}
+</update>
+
+<update id="updateMembershipMonth1" parameterType="com.one.health.dto.MembershipDto">
+	UPDATE MEMBERSHIP
+	SET EDATE = EDATE+(INTERVAL '1' MONTH)
+	WHERE MBSID = #{mbsId}
+</update>
+
+<update id="updateMembershipMonth3" parameterType="com.one.health.dto.MembershipDto">
+	UPDATE MEMBERSHIP
+	SET EDATE = EDATE+(INTERVAL '3' MONTH)
+	WHERE MBSID = #{mbsId}
+</update>
+
+<update id="updateMembershipMonth6" parameterType="com.one.health.dto.MembershipDto">
+	UPDATE MEMBERSHIP
+	SET EDATE = EDATE+(INTERVAL '6' MONTH)
+	WHERE MBSID = #{mbsId}
+</update>
+
+<update id="updateMembershipYear" parameterType="com.one.health.dto.MembershipDto">
+	UPDATE MEMBERSHIP
+	SET EDATE = EDATE+(INTERVAL '1' YEAR)
+	WHERE MBSID = #{mbsId}
+</update>
+
+</mapper>

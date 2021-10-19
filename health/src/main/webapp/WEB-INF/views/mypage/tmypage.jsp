@@ -49,7 +49,13 @@ table.type1 td {
 
 <tr>
 	<th>사진</th>
-	<td><img src="resources/images/trainer/<%=trainner.getTid() %>.jpg" width="400px" height="400px"></td>
+	<td><img src="resources/images/trainer/<%=trainner.getTid() %>.jpg" width="400px" height="400px" onerror="this.src='resources/images/trainer/null.jpg'" ><br>
+         <form action="upload.do" method="post" enctype="multipart/form-data">
+         	<input type="file" name="fileload">  
+         	<input type="submit" value="업로드">
+         </form>
+     </td>
+	
 </tr>
 <tr>
 	<th>아이디</th>

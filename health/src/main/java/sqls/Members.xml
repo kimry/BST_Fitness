@@ -22,4 +22,12 @@
 	WHERE MID=#{mid}
 </update>
 
+<update id="updateMembers" parameterType="com.one.health.dto.MembersDto">
+	UPDATE MEMBERS
+	SET PTPOINT = PTPOINT+ #{ptpoint}, FLPOINT= FLPOINT + #{flpoint}, PRICE = PRICE + #{price}
+	WHERE MID =#{mid}
+</update>
+
+
+
 </mapper>

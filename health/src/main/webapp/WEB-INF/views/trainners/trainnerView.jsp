@@ -20,7 +20,7 @@ List<ReviewsDto> reviewList = (List<ReviewsDto>)request.getAttribute("reviewList
 <p>TrainnerView Page</p>
 <table border="1">
 	<tr>
-		<td><img src="resources/images/trainer/<%=trainner.getTid() %>.jpg" width="400px" height="400px"></td>
+		<td><img src="resources/images/trainer/<%=trainner.getTid() %>.jpg" width="400px" height="400px" onerror="this.src='resources/images/trainer/null.jpg'"></td>
 	</tr>
 	<tr>
 		<td>

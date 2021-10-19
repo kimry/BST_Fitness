@@ -39,4 +39,12 @@ public class MembersDaoImpl implements MembersDao{
 		}
 		return false;
 	}
+	
+	@Override
+	public void updateMembers(MembersDto member) {
+		System.out.println(sqlSession.update(namespace + "updateMembers", member));
+		sqlSession.update(namespace + "updateMembers", member);
+		
+	}
+
 }

@@ -28,4 +28,9 @@ public class MembersServiceImpl implements MembersService{
 		return dao.updateMember(member);
 	}
 	
+	@Override
+	public void updateMembers(MembersDto member) {
+		dao.updateMembers(member);
+		
+	}
 }
