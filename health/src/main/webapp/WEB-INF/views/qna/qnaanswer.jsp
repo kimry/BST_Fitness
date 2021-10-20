@@ -15,10 +15,6 @@ QnaDto qna = (QnaDto)request.getAttribute("qna");
 <title>Insert title here</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -30,10 +26,6 @@ QnaDto qna = (QnaDto)request.getAttribute("qna");
 * {
     margin: 0;
     padding: 0;
-}
-
-html {
-    font-size: 12px;
 }
 
 ul, li {
@@ -55,12 +47,12 @@ a {
 }
 
 .board_title strong {
-    font-size: 3rem;
+    font-size: 35px;
 }
 
 .board_title p {
     margin-top: 5px;
-    font-size: 1.4rem;
+    font-size: 17px;
 }
 
 
@@ -86,7 +78,7 @@ a {
     display: inline-block;
     padding: 15px 0;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 16px;
 }
 
 .board_list > div.top > div {
@@ -137,13 +129,13 @@ a {
 
 .board_page a.bt {
     padding-top: 10px;
-    font-size: 1.2rem;
+    font-size: 15px;
     letter-spacing: -1px;
 }
 
 .board_page a.num {
     padding-top: 9px;
-    font-size: 1.4rem;
+    font-size: 15px;
 }
 
 .board_page a.num.on {
@@ -204,9 +196,6 @@ a {
     font-size: 1.4rem;
 }
 
-.board_view .info dl dt {
-
-}
 
 .board_view .info dl dd {
     margin-left: 10px;
@@ -251,7 +240,7 @@ a {
 .board_write .info dd {
     display: inline-block;
     vertical-align: middle;
-    font-size: 1.4rem;
+    font-size: 15px;
 }
 
 .board_write .title dt,
@@ -342,7 +331,7 @@ if(dto == null){
 %>
 <div class="col-lg-6">
 <div class="board_wrap">
-<form action="qnaanswerAf.do" method="post" onsubmit="return check()">
+<form action="qnaanswerAf.do?qnum=<%=qnum %>" method="post" onsubmit="return check()">
         <div class="board_title">
             <strong>답글</strong>
             <p>글에 대한 답변내용을 기재해 주세요.</p>

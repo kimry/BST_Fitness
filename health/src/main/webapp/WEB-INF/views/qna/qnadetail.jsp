@@ -28,9 +28,7 @@ UsersDto user = (UsersDto)request.getAttribute("user");
     padding: 0;
 }
 
-html {
-    font-size: 12px;
-}
+
 
 ul, li {
     list-style: none;
@@ -51,12 +49,12 @@ a {
 }
 
 .board_title strong {
-    font-size: 3rem;
+    font-size: 35px;
 }
 
 .board_title p {
     margin-top: 5px;
-    font-size: 1.4rem;
+    font-size: 17px;
 }
 
 
@@ -82,7 +80,7 @@ a {
     display: inline-block;
     padding: 15px 0;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 16px;
 }
 
 .board_list > div.top > div {
@@ -133,13 +131,13 @@ a {
 
 .board_page a.bt {
     padding-top: 10px;
-    font-size: 1.2rem;
+    font-size: 15px;
     letter-spacing: -1px;
 }
 
 .board_page a.num {
     padding-top: 9px;
-    font-size: 1.4rem;
+    font-size: 15px;
 }
 
 .board_page a.num.on {
@@ -200,9 +198,6 @@ a {
     font-size: 1.4rem;
 }
 
-.board_view .info dl dt {
-
-}
 
 .board_view .info dl dd {
     margin-left: 10px;
@@ -247,7 +242,7 @@ a {
 .board_write .info dd {
     display: inline-block;
     vertical-align: middle;
-    font-size: 1.4rem;
+    font-size: 17px;
 }
 
 .board_write .title dt,
@@ -356,11 +351,6 @@ if(dto == null){
     </div>
 
 
-
-<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
 
 <script type="text/javascript">
 function answerQna(qnum) {

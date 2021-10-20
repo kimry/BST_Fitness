@@ -29,8 +29,27 @@ List<TrainnersDto> pilatesList = (List<TrainnersDto>)request.getAttribute("pl");
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
   <script>
+  $.datepicker.setDefaults({
+      dateFormat: 'yyyy-mm-dd',
+      prevText: '이전 달',
+      nextText: '다음 달',
+      monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+      dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+      dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+      showMonthAfterYear: true,
+      yearSuffix: '년',
+   	  minDate: "+1D",
+   	  onSelect: function (dateText, inst) {
+   		  	console.log($('#ptdateR').val());
+   		    console.log(dateText);
+   			$('#ptdateR').val(dateText.substring(4,14)); 
+   	  }
+  });
   $(function() {
     $( "#ptdate" ).datepicker();
+    
   });
   </script> 
 
@@ -62,6 +81,7 @@ font-size: 3rem;
 #main{
 margin-top: 10px;
 margin-bottom: 10px;
+font-size:20px;
 }
 
 #ptdate{
@@ -95,7 +115,7 @@ if(dto == null){
 %>
 <div class="PTReservation">
 <form action="addPT.do?mid=<%=user.getId() %>" method="post">
-	<div class="PTTitle" >
+	<div class="PTTitle">
 		<strong>PT예약 페이지</strong>
 		<p>멤버십 예약 페이지입니다.
 	</div>
@@ -106,14 +126,14 @@ if(dto == null){
 		<div class="col">시간</div>
 	</div>
 	<div class="row" id="table" align="center">
-		<div class="col" id="field" ><br>
-			<select class="list-group" id="field" name="field" size="3" style="height:220px; width: 220px; text-align:center;" >
-				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "1">PT</option>
+		<div class="col">
+			<br><select class="list-group" id="field" name="field" size="3" style="height:295px; width: 220px; text-align:center;" >
+				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "1" selected>PT</option>
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "2">필라테스</option>
 			</select> 
 		</div>
-	<div class="col" id="tid" ><br>
-			<select class="list-group" id="tid" name="tid" size="3" style="height:220px; width: 220px; text-align:center;" >
+		<div class="col" >
+			<br><select class="list-group" id="tid" name="tid" size="3" style="height:295px; width: 220px; text-align:center;" >
 			    <%for(int i=0;i<trainerList.size();i++){
 			   		if(i==0)
 			   		{%>
@@ -128,13 +148,15 @@ if(dto == null){
 			    }%>
 		    </select>  
 		</div>
-		<div class="col" id="ptdate" >
-			<div id="ptdate" min="<%=LocalDate.now().plusDays(1)%>"></div> 
+		<div class="col" >
+			<br><div id="ptdate"></div> 
+			<input type="hidden" id="ptdateR" name="ptdate" value="<%=LocalDate.now().plusDays(1)%>">
 		</div>
-		<div class="col" id="times" ><br>
-			<select class="list-group" id="times" name="times" size="10"  style="height:220px; width: 220px; text-align:center;">
+		<div class="col" id="times" >
+			<br><select class="list-group" id="times" name="times" size="10"  style="height:295px; width: 220px; text-align:center;">
+			     <option class="list-group-item list-group-item-action " data-bs-toggle="list" value="6" selected>06:00</option>
 			     <%
-				    for(int j=6;j<10;j++){ 
+				    for(int j=7;j<10;j++){ 
 				    %>
 						<option class="list-group-item list-group-item-action" data-bs-toggle="list" value="<%=j%>">0<%=j%>:00</option>
 					<%
@@ -167,10 +189,14 @@ if(dto == null){
 
 
 <script type="text/javascript">
-date = new Date();
-date.setDate(date.getDate()+1);
-$('#ptdate').val(date.toISOString().substring(0,10));
-
+/*
+$("#ptdate").datepicker({
+    onSelect: function() { 
+    	console.log($(this).datepicker('getDate'));
+        $('#ptdateR').val($(this).datepicker('getDate')); 
+    }
+});
+*/
 function rtnmin(){
 	return date.toISOString().substring(0,10);
 }

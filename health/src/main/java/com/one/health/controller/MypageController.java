@@ -179,8 +179,8 @@ public class MypageController {
 		
 		// upload 경로설정
 		// server(tomcat) <- 진짜!
-		String fupload = req.getServletContext().getRealPath("/resources/images/trainer");
-		
+		//String fupload = req.getServletContext().getRealPath("/resources/images/trainer");
+		String fupload = "C:/Users/kim/Desktop/study/semi/health/src/main/webapp/resources/images/trainer";
 		System.out.println("fupload:" + fupload);
 		
 		// 파일명이 충돌되지 않도록 파일명을 변경

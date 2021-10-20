@@ -40,13 +40,11 @@ font-size: 3rem;
 .submit{
 width: 1000px;
 }
-#time, #Todo, #point{
-margin-top:5px;
-border-top:1px solid #D5D5D5;
-}
 
 #selector{
 border-bottom: 2px solid #000;
+margin-top:5px;
+border-top:1px solid #D5D5D5;
 }
 </style>
 
@@ -68,10 +66,10 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 		<div class="col">횟수<br></div>
 	</div>
 	<div class="row" id="selector" align="center">
-		<div class="col" id="time" ><br>
+		<div class="col" ><br>
 			<input type="hidden" name="mbsId" value="<%=user.getId() %>">
 			<input type="hidden" name="mbsName" value="<%=user.getName() %>">
-			<select class="list-group" id = "time" name="time" size="3"  style="height:220px; width: 220px; text-align:center;">
+			<select class="list-group" id = "time" name="time" size="3"  style="height:231px; width: 220px; text-align:center;">
 				<option class="list-group-item list-group-item-light active" data-bs-toggle="list" value = "0" selected>없음</option>
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "1">1일권</option>
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "2">한달</option>
@@ -80,15 +78,15 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "5">1년</option>
 			</select><br>
 		</div>	
-		<div class="col" id="Todo" ><br>
-			<select class="list-group" id="Todo" name = "Todo" size="3" style="height:220px; width: 220px; text-align:center;">
+		<div class="col"><br>
+			<select class="list-group" id="Todo" name = "Todo" size="3" style="height:231px; width: 220px; text-align:center;">
 				<option class="list-group-item list-group-item-light active" data-bs-toggle="list" value = "0" selected>없음</option>
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "1">PT</option>
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "2">필라테스</option>
 			</select><br>
 		</div>
-		<div class="col" id="point"><br>
-			<select class="list-group" id="point" name = "point" size="3" style="height:220px; width: 220px; text-align:center;">
+		<div class="col"><br>
+			<select class="list-group" id="point" name = "point" size="3" style="height:231px; width: 220px; text-align:center;">
 				<option class="list-group-item list-group-item-light active" data-bs-toggle="list" value = "0" selected>0회</option>
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value ="1">10회</option>
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value ="2">20회</option>
