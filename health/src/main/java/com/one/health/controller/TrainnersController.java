@@ -1,5 +1,6 @@
 package com.one.health.controller;
 
+import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.one.health.dto.MembersDto;
 import com.one.health.dto.ReviewsDto;
 import com.one.health.dto.TrainnersDto;
+import com.one.health.dto.rDto;
 import com.one.health.service.MembersService;
 import com.one.health.service.ReviewsService;
 import com.one.health.service.TrainnersService;
@@ -45,7 +47,7 @@ public class TrainnersController {
 		logger.info("TrainnersController moveTrainnerView " + new Date());
 		
 		TrainnersDto trainner = tService.getTrainner(tid);
-		List<ReviewsDto> reviewList = rService.getReviewList(tid); 
+		List<rDto> reviewList = rService.getReviewListO(tid);
 		model.addAttribute("trainner",trainner);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("content","trainners/trainnerView.jsp");

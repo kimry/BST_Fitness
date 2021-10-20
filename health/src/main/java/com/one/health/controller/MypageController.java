@@ -23,6 +23,7 @@ import com.one.health.dto.MembersDto;
 import com.one.health.dto.PTSDto;
 import com.one.health.dto.TrainnersDto;
 import com.one.health.dto.UsersDto;
+import com.one.health.dto.sDto;
 import com.one.health.service.MembersService;
 import com.one.health.service.PTSService;
 import com.one.health.service.TrainnersService;
@@ -120,9 +121,9 @@ public class MypageController {
 		UsersDto user = (UsersDto)session.getAttribute("login");
 		
 		MembersDto member = mservice.getMembers(user.getId());
-		List<PTSDto> today = ptService.getTodayList(user.getId());
-		List<PTSDto> upcoming = ptService.getUpcomingList(user.getId());
-		List<PTSDto> past = ptService.getPastList(user.getId());
+		List<sDto> today = ptService.getTodayList(user.getId());
+		List<sDto> upcoming = ptService.getUpcomingList(user.getId());
+		List<sDto> past = ptService.getPastList(user.getId());
 		
 		model.addAttribute("user", user);
 		model.addAttribute("member", member);

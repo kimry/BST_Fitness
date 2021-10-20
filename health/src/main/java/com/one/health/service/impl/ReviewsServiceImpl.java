@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.one.health.dao.ReviewsDao;
 import com.one.health.dto.ReviewsDto;
+import com.one.health.dto.rDto;
 import com.one.health.service.ReviewsService;
 
 @Service
@@ -23,6 +24,11 @@ public class ReviewsServiceImpl implements ReviewsService {
 	@Override
 	public List<ReviewsDto> getReviewList(String tid) {
 		return dao.getReviewList(tid);
+	}
+
+	@Override
+	public List<rDto> getReviewListO(String tid) {
+		return dao.getReviewListO(tid);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.one.health.dao.PTSDao;
 import com.one.health.dto.PTSDto;
+import com.one.health.dto.sDto;
 
 @Repository
 public class PTSDaoImpl implements PTSDao{
@@ -31,15 +32,15 @@ public class PTSDaoImpl implements PTSDao{
 		return sqlSession.selectOne(namespace+"getTime",pts);
 	}
 	@Override
-	public List<PTSDto> getTodayList(String mid) {
+	public List<sDto> getTodayList(String mid) {
 		return sqlSession.selectList(namespace+"getTodayList", mid);
 	}
 	@Override
-	public List<PTSDto> getUpcomingList(String mid) {
+	public List<sDto> getUpcomingList(String mid) {
 		return sqlSession.selectList(namespace+"getUpcomingList", mid);
 	}
 	@Override
-	public List<PTSDto> getPastList(String mid) {
+	public List<sDto> getPastList(String mid) {
 		return sqlSession.selectList(namespace+"getPastList", mid);
 	}
 	

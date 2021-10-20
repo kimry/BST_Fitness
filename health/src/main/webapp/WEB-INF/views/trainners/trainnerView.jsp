@@ -1,3 +1,4 @@
+<%@page import="com.one.health.dto.rDto"%>
 <%@page import="com.one.health.dto.UsersDto"%>
 <%@page import="com.one.health.dto.ReviewsDto"%>
 <%@page import="java.util.List"%>
@@ -14,7 +15,7 @@
 <%
 UsersDto user = (UsersDto)session.getAttribute("login");
 TrainnersDto trainner = (TrainnersDto)request.getAttribute("trainner");
-List<ReviewsDto> reviewList = (List<ReviewsDto>)request.getAttribute("reviewList");
+List<rDto> reviewList = (List<rDto>)request.getAttribute("reviewList");
 %>
 <div align="center">
 <p>TrainnerView Page</p>
@@ -51,13 +52,21 @@ List<ReviewsDto> reviewList = (List<ReviewsDto>)request.getAttribute("reviewList
 		<th>비추천</th>
 	</tr>
 	<%
+	if(reviewList.size()==0)
+	{
+		%>
+		<tr>
+		<td colspan="7" align="center">작성된 리뷰가 없습니다.</td>
+		</tr>
+		<%
+	}
 	for(int i=0;i<reviewList.size();i++)
 	{
 		%>
 		<tr>
 			<td><%=reviewList.get(i).getRnum() %></td>
 			<td><a href="moveReviewView.do?rnum=<%=reviewList.get(i).getRnum()%>"><%=reviewList.get(i).getTitle() %></a></td>
-			<td><%=reviewList.get(i).getMid() %></td>
+			<td><%=reviewList.get(i).getName() %></td>
 			<td><%=reviewList.get(i).getWdate() %></td>
 			<td><%=reviewList.get(i).getGrade() %></td>
 			<td><%=reviewList.get(i).getRcm() %></td>

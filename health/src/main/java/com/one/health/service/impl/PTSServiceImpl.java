@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.one.health.dao.PTSDao;
 import com.one.health.dto.PTSDto;
+import com.one.health.dto.sDto;
 import com.one.health.service.PTSService;
 
 @Service
@@ -31,17 +32,17 @@ public class PTSServiceImpl implements PTSService{
 	}
 
 	@Override
-	public List<PTSDto> getTodayList(String mid) {
+	public List<sDto> getTodayList(String mid) {
 		return dao.getTodayList(mid);
 	}
 
 	@Override
-	public List<PTSDto> getUpcomingList(String mid) {
+	public List<sDto> getUpcomingList(String mid) {
 		return dao.getUpcomingList(mid);
 	}
 
 	@Override
-	public List<PTSDto> getPastList(String mid) {
+	public List<sDto> getPastList(String mid) {
 		return dao.getPastList(mid);
 	}
 	

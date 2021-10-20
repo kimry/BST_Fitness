@@ -10,10 +10,17 @@
 	VALUES(SEQ_RNUM.NEXTVAL, #{tid}, #{mid}, #{title}, SYSDATE, #{grade}, #{content}, 0, 0)
 </insert>
 
-<select id="getReviewList" resultType="com.one.health.dto.ReviewsDto">
+<select id="getReviewList" parameterType="java.lang.String" resultType="com.one.health.dto.ReviewsDto">
 	SELECT RNUM, TID, MID, TITLE, WDATE, GRADE, CONTENT, RCM, OPS
 	FROM REVIEWS
 	WHERE TID=#{tid}
+	ORDER BY RNUM DESC
+</select>
+
+<select id="getReviewListO" parameterType="java.lang.String" resultType="com.one.health.dto.rDto">
+	SELECT RNUM, TID, R.MID, NAME, TITLE, WDATE, GRADE, CONTENT, RCM, OPS
+	FROM REVIEWS R, MEMBERS M
+	WHERE R.TID=#{tid} AND R.MID = M.MID 
 	ORDER BY RNUM DESC
 </select>
 

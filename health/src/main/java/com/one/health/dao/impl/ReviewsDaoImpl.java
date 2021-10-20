@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.one.health.dao.ReviewsDao;
 import com.one.health.dto.ReviewsDto;
+import com.one.health.dto.rDto;
 
 @Repository
 public class ReviewsDaoImpl implements ReviewsDao{
@@ -31,7 +32,12 @@ public class ReviewsDaoImpl implements ReviewsDao{
 	public List<ReviewsDto> getReviewList(String tid) {
 		return sqlSession.selectList(namespace + "getReviewList",tid);
 	}
-
+	
+	@Override
+	public List<rDto> getReviewListO(String tid) {
+		return sqlSession.selectList(namespace + "getReviewListO", tid);
+	}
+	
 	@Override
 	public ReviewsDto getReviews(int rnum) {
 		return sqlSession.selectOne(namespace+"getReviews",rnum);
@@ -56,4 +62,5 @@ public class ReviewsDaoImpl implements ReviewsDao{
 		}
 		return false;
 	}
+	
 }
