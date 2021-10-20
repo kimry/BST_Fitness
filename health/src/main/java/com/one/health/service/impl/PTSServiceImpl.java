@@ -45,5 +45,22 @@ public class PTSServiceImpl implements PTSService{
 	public List<sDto> getPastList(String mid) {
 		return dao.getPastList(mid);
 	}
+
+	@Override
+	public List<sDto> getTodayListT(String tid) {
+		return dao.getTodayListT(tid);
+	}
+
+	@Override
+	public List<sDto> getUpcomingListT(String tid) {
+		return dao.getUpcomingListT(tid);
+	}
+
+	@Override
+	public List<sDto> getPastListT(String tid) {
+		return dao.getPastListT(tid);
+	}
+	
+	
 	
 }

@@ -70,13 +70,16 @@ public class MypageController {
 		logger.info("MypageController moveTrainerMypage " + new Date());
 		
 		UsersDto user = (UsersDto)session.getAttribute("login");
-		
-		String tid = user.getId();
-		
-		TrainnersDto trainner = tservice.getTrainner(tid);
+		TrainnersDto trainner = tservice.getTrainner(user.getId());
+		List<sDto> today = ptService.getTodayListT(user.getId());
+		List<sDto> upcoming = ptService.getUpcomingListT(user.getId());
+		List<sDto> past = ptService.getPastListT(user.getId());
 		
 		model.addAttribute("user", user);
 		model.addAttribute("trainner", trainner);
+		model.addAttribute("today", today);
+		model.addAttribute("upcoming",upcoming);
+		model.addAttribute("past", past);
 		
 		model.addAttribute("content","mypage/tmypage.jsp");
 		return "main";

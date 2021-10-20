@@ -4,8 +4,62 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 <title>SignUp page</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style type="text/css">
+body{
+	font-size: 14px;
+	background: rgb(219,226,226);
+}
+.center{
+	position: absolute;
+	top: 20%;
+	left: 38%;
+	transform: traslate(-50%,-50%);
+	width: 500px;
+	height: 650px;
+	background: white;
+	border-radius: 15px;
+	box-shadow: 12px 12px 22px grey;
+}
+.signup-container{
+
+	width: 100%;
+}
+h1{
+	text-align: center;
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+.btn1{
+	border: none;
+	outline: none;
+	height: 30px;
+	width: 200px;
+	background-color: black;
+	color: white;
+	border-radius: 4px;
+	font-weight: bold;
+}
+.btn1:hover {
+	background: white;
+	border: 1px solid;
+	color: black;
+}
+span{
+	width: 33%;
+}
+
+</style>
+
 </head>
 <body>
 <%
@@ -23,51 +77,61 @@ if(msg!=null)
 <script type="text/javascript">
 </script>
 
+<div class="center">
+<div class="signup-container d-flex align-items-center justify-content-center">
+	<form class="singup-form" action="signup.do" method="post" onsubmit="return check()">
+		<h1>SIGN UP</h1>
+		<div class="input-group mb-3">
+  			<span class="input-group-text" id="inputGroup-sizing-default">userid</span>
+  			<input type="text" id="id" name="id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+		<div class="input-group mb-3">
+  			<span class="input-group-text" id="inputGroup-sizing-default">Password</span>
+  			<input type="password" id="pw" name="pw" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+		<div class="input-group mb-3">
+  			<span class="input-group-text" id="inputGroup-sizing-default">Passwordcheck</span>
+  			<input type="password" id="pwc" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+		<select class="form-select mb-3" aria-label="Default select example" name="auth">
+  			<option selected>회원유형 선택</option>
+  			<option value="1">고객</option>
+  			<option value="2">트레이너</option>
+		</select>
+		<div class="input-group mb-3">
+  			<span class="input-group-text" id="inputGroup-sizing-default">이름</span>
+  			<input type="text" id="name" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+		<div class="input-group mb-3">
+  			<span class="input-group-text" id="inputGroup-sizing-default">나이</span>
+  			<input type="text" id="age" name="age" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+		<div class="input-group mb-3">
+  			<span class="input-group-text" id="inputGroup-sizing-default">e-mail</span>
+  			<input type="text" id="email" name="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+		<div class="input-group mb-3">
+  			<span class="input-group-text" id="inputGroup-sizing-default">phone</span>
+  			<input type="text" id="phone" name="phone" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-6">
+				<input type="submit" value="회원가입" class="btn1 mt-3 mb-2 p-1">
+			</div>
+			<div class="col-lg-6">
+				<input type="button" value="돌아가기" onclick="moveLogin()" class="btn1 mt-3 mb-2 p-1">
+			</div>
+		</div>
 
-<div align="center">
-<p>SignUp page</p>
-<form action="signup.do" method="post" onsubmit="return check()">
-<table border="1">
-	<tr>
-		<th>ID</th>
-		<td><input type="text" id="id" name="id"></td>
-	</tr>
-	<tr>
-		<th>PW</th>
-		<td><input type="password" id="pw" name="pw"></td>
-	</tr>
-	<tr>
-		<th>PW확인</th>
-		<td><input type="password" id="pwc"></td>
-	</tr>
-	<tr>
-		<th>회원종류</th>
-		<td><select name="auth">
-				<option value="1">고객</option>
-				<option value="2">트레이너</option>
-			</select></td>
-	</tr>
-	<tr>
-		<th>이름</th>
-		<td><input type="text" id="name" name="name"></td>
-	</tr>
-	<tr>
-		<th>나이</th>
-		<td><input type="text" id="age" name="age"></td>
-	</tr>
-	<tr>
-		<th>e-mail</th>
-		<td><input type="text" id="email" name="email"></td>
-	</tr>
-	<tr>
-		<th>phone</th>
-		<td><input type="text" id="phone" name="phone"></td>
-	</tr>
-</table>
-<input type="submit" value="회원가입">
-<input type="button" value="돌아가기" onclick="moveLogin()">
-</form>
+	</form>
+
 </div>
+</div>
+<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
 <script type="text/javascript">
 function moveLogin(){
 	location.href = "moveLogin.do";

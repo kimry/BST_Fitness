@@ -1,3 +1,5 @@
+<%@page import="com.one.health.dto.sDto"%>
+<%@page import="java.util.List"%>
 <%@page import="com.one.health.dto.TrainnersDto"%>
 <%@page import="com.one.health.dto.UsersDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,6 +8,9 @@
 <%
 UsersDto user = (UsersDto)request.getAttribute("user");
 TrainnersDto trainner = (TrainnersDto)request.getAttribute("trainner");
+List<sDto> today = (List<sDto>)request.getAttribute("today");
+List<sDto> upcoming = (List<sDto>)request.getAttribute("upcoming");
+List<sDto> past = (List<sDto>)request.getAttribute("past");
 %>
 
 <!DOCTYPE html>
@@ -124,6 +129,97 @@ table.type1 td {
 	</td>
 </tr>
 
+</table>
+
+금일 예약 현황
+<table border="1">
+	<tr>
+		<td>예약번호</td>
+		<td>강사</td>
+		<td>예약일</td>
+		<td>시간</td>
+	</tr>
+	<%
+	if(today.size()==0)
+	{
+		%>
+			<tr>
+				<td colspan="4"> 금일 예약 현황이 없습니다.</td>
+			</tr>
+		<%
+	}
+	for(int i=0;i<today.size();i++)
+	{
+		%>
+		<tr>
+			<td><%=today.get(i).getSnum() %></td>
+			<td><%=today.get(i).getName() %></td>
+			<td><%=today.get(i).getPtdate().substring(0,10) %></td>
+			<td><%=today.get(i).getTimes() %></td>
+		</tr>
+		<%
+	}
+	%>
+</table>
+예정된 예약 현황
+<table border="1">
+	<tr>
+		<td>예약번호</td>
+		<td>강사</td>
+		<td>예약일</td>
+		<td>시간</td>
+	</tr>
+	<%
+	if(upcoming.size()==0)
+	{
+		%>
+			<tr>
+				<td colspan="4">예정된 예약 현황이 없습니다.</td>
+			</tr>
+		<%
+	}
+	for(int i=0;i<upcoming.size();i++)
+	{
+		%>
+		<tr>
+			<td><%=upcoming.get(i).getSnum() %></td>
+			<td><%=upcoming.get(i).getName() %></td>
+			<td><%=upcoming.get(i).getPtdate().substring(0,10) %></td>
+			<td><%=upcoming.get(i).getTimes() %></td>
+		</tr>
+		<%
+	}
+	%>
+</table>
+과거 예약 현황
+<table border="1">
+	<tr>
+		<td>예약번호</td>
+		<td>강사</td>
+		<td>예약일</td>
+		<td>시간</td>
+	</tr>
+	<%
+	if(past.size()==0)
+	{
+		%>
+			<tr>
+				<td colspan="4">과거 예약 현황이 없습니다.</td>
+			</tr>
+		<%
+	}
+	for(int i=0;i<past.size();i++)
+	{
+		%>
+		<tr>
+			<td><%=past.get(i).getSnum() %></td>
+			<td><%=past.get(i).getName() %></td>
+			<td><%=past.get(i).getPtdate().substring(0,10) %></td>
+			<td><%=past.get(i).getTimes() %></td>
+		</tr>
+		<%
+	}
+	%>
 </table>
 
 </div>

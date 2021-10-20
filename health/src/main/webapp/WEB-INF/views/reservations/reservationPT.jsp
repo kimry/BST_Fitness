@@ -19,8 +19,66 @@ List<TrainnersDto> pilatesList = (List<TrainnersDto>)request.getAttribute("pl");
 <meta charset="UTF-8">
 <title>PT예약창</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#ptdate" ).datepicker();
+  });
+  </script> 
 
 
+<style type="text/css">
+
+.PTReservation{
+width: 1200px;
+margin-top: 100px;
+align:center;
+margin-left: auto;
+margin-right: auto;
+}
+
+#header{
+border-top: 2px solid #000;
+border-bottom: 2px solid #000;
+width: 100%;
+font-size: 20px;
+}
+.PTTitle strong{
+font-size: 3rem;
+}
+.PTTitle p {
+	margin-top:5px;
+	font-size; 1.4rem;
+}
+
+#main{
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+#ptdate{
+margin-bottom: 20px;
+}
+
+.PTTitle{
+border-bottom: 2px solid #000;
+}
+
+#table{
+border-top: 1px solid #D5D5D5;
+border-bottom : 2px solid #000;
+}
+
+
+</style> 
 </head>
 
 <body>
@@ -35,77 +93,79 @@ if(dto == null){
 <%
 }
 %>
+<div class="PTReservation">
 <form action="addPT.do?mid=<%=user.getId() %>" method="post">
-<table border="1">
-<col><col width="100">
-<tr>
-   <th colspan="4">예약</th>
-</tr>
-<tr>
-   <th>분야</th>
-   <th>강사</th>
-   <th>날짜</th>
-   <th>시간</th>
-</tr>
-<tr>   
-
-	<th>
-    <select id="field">
-    	<option value="1">PT</option>
-    	<option value="2">필라테스</option>
-    </select>
-    </th>
-   
-    <th>
-    <select id="tid" name="tid">
-    <%for(int i=0;i<trainerList.size();i++){
-   		if(i==0)
-   		{%>
-   			<option value="<%=trainerList.get(i).getTid() %>" selected><%=trainerList.get(i).getName()%></option> 
-   		<%}
-   		else
-   		{
-   			%>
-   			<option value="<%=trainerList.get(i).getTid() %>"><%=trainerList.get(i).getName()%></option>	
-   			<%
-   		}
-    }%>
-    </select>
-    </th>
-    
-    <th>
-    <input type="date" id="ptdate" name="ptdate" min="<%=LocalDate.now().plusDays(1)%>">
-    </th>
-   
-    <th>
-    <select name="times">
-    <option value="6">06:00</option>
-    <option value="7">07:00</option>
-    <option value="8">08:00</option>
-    <option value="9">09:00</option>
-    <option value="10">10:00</option>
-    <option value="11">11:00</option>
-    <option value="12">12:00</option>
-    <option value="13">13:00</option>
-    <option value="14">14:00</option>
-    <option value="15">15:00</option>
-    <option value="16">16:00</option>
-    <option value="17">17:00</option>
-    <option value="18">18:00</option>
-    <option value="19">19:00</option>
-    <option value="20">20:00</option>
-    <option value="21">21:00</option>
-    </select>
-    </th>
-
-</tr>
-</table>
+	<div class="PTTitle" >
+		<strong>PT예약 페이지</strong>
+		<p>멤버십 예약 페이지입니다.
+	</div>
+	<div class="row" id="main" align="center">
+		<div class="col">분야</div>
+		<div class="col">강사</div>
+		<div class="col">날짜</div>
+		<div class="col">시간</div>
+	</div>
+	<div class="row" id="table" align="center">
+		<div class="col" id="field" ><br>
+			<select class="list-group" id="field" name="field" size="3" style="height:220px; width: 220px; text-align:center;" >
+				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "1">PT</option>
+				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "2">필라테스</option>
+			</select> 
+		</div>
+	<div class="col" id="tid" ><br>
+			<select class="list-group" id="tid" name="tid" size="3" style="height:220px; width: 220px; text-align:center;" >
+			    <%for(int i=0;i<trainerList.size();i++){
+			   		if(i==0)
+			   		{%>
+			   			<option class="list-group-item list-group-item-action" data-bs-toggle="list" value="<%=trainerList.get(i).getTid() %>" selected><%=trainerList.get(i).getName()%></option> 
+			   		<%}
+			   		else
+			   		{
+			   			%>
+			   			<option class="list-group-item list-group-item-action" data-bs-toggle="list" value="<%=trainerList.get(i).getTid() %>"><%=trainerList.get(i).getName()%></option>	
+			   			<%
+			   		}
+			    }%>
+		    </select>  
+		</div>
+		<div class="col" id="ptdate" >
+			<div id="ptdate" min="<%=LocalDate.now().plusDays(1)%>"></div> 
+		</div>
+		<div class="col" id="times" ><br>
+			<select class="list-group" id="times" name="times" size="10"  style="height:220px; width: 220px; text-align:center;">
+			     <%
+				    for(int j=6;j<10;j++){ 
+				    %>
+						<option class="list-group-item list-group-item-action" data-bs-toggle="list" value="<%=j%>">0<%=j%>:00</option>
+					<%
+					}
+					for(int k=10;k<22;k++)
+					{ 
+					%>
+						 <option class="list-group-item list-group-item-action" data-bs-toggle="list" value="<%=k%>"><%=k%>:00</option>
+					<%
+				}%> 
+	    	</select>
+	    </div>
+	</div>
 <br>
-<button type="submit">예약완료</button>
-</form>
 
-<a>잔여 PT 포인트 : <%=member.getPtpoint() %></a><br>
-<a>잔여 필라테스 포인트 : <%=member.getFlpoint() %></a>
+<br>
+<div class="container">
+	<div class="row" id="point">
+		<div class="col" align="left">
+			<a>잔여 PT 포인트 : <%=member.getPtpoint() %></a><br>
+			<a>잔여 필라테스 포인트 : <%=member.getFlpoint() %></a>
+		</div>
+		<div class="col" align="right">
+			<button type="submit" class="btn btn-dark">예약완료</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+
 <script type="text/javascript">
 date = new Date();
 date.setDate(date.getDate()+1);
@@ -122,13 +182,13 @@ $(document).ready(function(){
 			<%for(int i=0;i<trainerList.size();i++){
 		   		if(i==0)
 		   		{%>
-		   		var option = $("<option value='<%=trainerList.get(i).getTid() %>' selected><%=trainerList.get(i).getName() %></option>");
+		   		var option = $("<option class='list-group-item list-group-item-action' data-bs-toggle='list' value='<%=trainerList.get(i).getTid() %>' selected><%=trainerList.get(i).getName() %></option>");
 		    	$('#tid').append(option);
 		   		<%}
 		   		else
 		   		{
 		   			%>
-		   			var option = $("<option value='<%=trainerList.get(i).getTid() %>'><%=trainerList.get(i).getName() %></option>");
+		   			var option = $("<option class='list-group-item list-group-item-action' data-bs-toggle='list' value='<%=trainerList.get(i).getTid() %>'><%=trainerList.get(i).getName() %></option>");
 			    	$('#tid').append(option);
 		   			<%
 		   		}
@@ -137,13 +197,13 @@ $(document).ready(function(){
 			<%for(int i=0;i<pilatesList.size();i++){
 		   		if(i==0)
 		   		{%>
-			   		var option = $("<option value='<%=pilatesList.get(i).getTid() %>' selected><%=pilatesList.get(i).getName() %></option>");
+			   		var option = $("<option class='list-group-item list-group-item-action' data-bs-toggle='list' value='<%=pilatesList.get(i).getTid() %>' selected><%=pilatesList.get(i).getName() %></option>");
 			    	$('#tid').append(option);
 		   		<%}
 		   		else
 		   		{
 		   			%>
-		   			var option = $("<option value='<%=pilatesList.get(i).getTid() %>'><%=pilatesList.get(i).getName() %></option>");
+		   			var option = $("<option class='list-group-item list-group-item-action' data-bs-toggle='list' value='<%=pilatesList.get(i).getTid() %>'><%=pilatesList.get(i).getName() %></option>");
 			    	$('#tid').append(option);	
 		   			<%
 		   		}

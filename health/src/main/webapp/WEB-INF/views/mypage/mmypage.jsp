@@ -12,7 +12,6 @@ MembersDto member = (MembersDto)request.getAttribute("member");
 List<sDto> today = (List<sDto>)request.getAttribute("today");
 List<sDto> upcoming = (List<sDto>)request.getAttribute("upcoming");
 List<sDto> past = (List<sDto>)request.getAttribute("past");
-System.out.println(today.get(0).toString());
 %>
 <!DOCTYPE html>
 <html>
