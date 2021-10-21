@@ -323,7 +323,7 @@ table.type1 td {
 					<dl>
 						<dt>사진</dt>
 						<dd>
-							<img src="/trainer/<%=trainner.getTid()%>.jpg"
+							<img src="resources/images/trainer/<%=trainner.getTid()%>.jpg"
 								width="400px" height="400px"
 								onerror="this.src='resources/images/trainer/null.jpg'"><br>
 							<form action="upload.do" method="post"

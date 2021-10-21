@@ -36,7 +36,7 @@
 
 <update id="downFl" parameterType="java.lang.String">
 	UPDATE MEMBERS
-	SET FLPOINT= FLPOINT-1
+	SET FLPOINT = FLPOINT-1
 	WHERE MID =#{mid}
 </update>
 

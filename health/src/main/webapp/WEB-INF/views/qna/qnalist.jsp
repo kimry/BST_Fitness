@@ -98,7 +98,7 @@ $(document).ready(function() {
 				%>
 				<div>
                     <div class="num"> - </div>
-                    <div class="title"><a href="view.html">작성된 글이 업습니다.</a></div>
+                    <div class="title"><a href="view.html">작성된 글이 없습니다.</a></div>
                     <div class="writer"> - </div>
                     <div class="count"> - </div>
                 </div>

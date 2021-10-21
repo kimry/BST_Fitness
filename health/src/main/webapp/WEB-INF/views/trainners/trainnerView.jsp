@@ -297,7 +297,7 @@ List<rDto> reviewList = (List<rDto>)request.getAttribute("reviewList");
 				  <ul class="list-group list-group-flush">
 				  <li class="list-group-item" style="font-size:1.4rem;">이름 : <%= trainner.getName()%></li>
 				    <li class="list-group-item" style="font-size:1.4rem;">분야 : <%= trainner.getField()==1?"pt트레이너":"필라테스"%></li> 
-				    <li class="list-group-item" style="font-size:1.4rem;">양력 : <%= trainner.getCareer().replace("\n","<br>")%></li>
+				    <li class="list-group-item" style="font-size:1.4rem;">약력 : <%= trainner.getCareer().replace("\n","<br>")%></li>
 				    <li class="list-group-item" style="font-size:1.4rem;">한마디 : <%= trainner.getContent().replace("\n","<br>")%></li>
 				  </ul><br>
 	  			</div>

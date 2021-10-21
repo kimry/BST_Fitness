@@ -100,7 +100,8 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 <div class="container" id="submit">
 	<div class="row">
 		<div class="col" align="left">
-			<a>가격 </a><input type="hidden" name="price" id="price" value="0" readonly="readonly"><br>
+			<a>가격 : </a> <a id="priceText">0</a>
+			<input type="hidden" name="price" id="price" value="0" readonly="readonly"><br>
 			<input type = "hidden" name="ptpoint" id= "ptpoint" value="0" readonly="readonly">
 			<input type = "hidden" name="flpoint" id= "flpoint" value="0" readonly="readonly">
 		</div>
@@ -143,6 +144,7 @@ $(document).ready(function(){
 				break;
 		}	
 		$("#price").val(ptprice + membershipprice); 
+		$("#priceText").text(ptprice + membershipprice);
 	});
 	$('#Todo').on('change', function(){
 		let point= $('#point option:selected').val();
@@ -153,6 +155,7 @@ $(document).ready(function(){
 		$("#ptpoint").val(ptpoint);
 		$("#flpoint").val(flpoint);
 		$("#price").val(ptprice + membershipprice); 
+		$("#priceText").text(ptprice + membershipprice);
 	});
 	$('#point').on('change', function(){
 		let point= $('#point option:selected').val();
@@ -162,6 +165,7 @@ $(document).ready(function(){
 					ptprice = 0;
 					flpoint = 0;
 					ptpoint = 0;
+					$("#priceText").text(ptprice + membershipprice);
 					break;
 				case "1":
 					ptprice = 100000;
@@ -213,6 +217,7 @@ $(document).ready(function(){
 		$("#ptpoint").val(ptpoint);
 		$("#flpoint").val(flpoint);
 		$("#price").val(ptprice + membershipprice); 
+		$("#priceText").text(ptprice + membershipprice);
 	});		
 });
 

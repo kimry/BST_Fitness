@@ -17,15 +17,24 @@ margin-left: 18px;
 margin-right: 18px;
 margin-top:18px;
 }
-
+strong{
+	font-size: 40px;
+}
+.center{
+margin-top: 3%;
+margin-bottom: 3%
+}
+.container{
+margin-top: 3%;
+}
 </style>
 </head>
 <%
 List<TrainnersDto> trainnerList = (List<TrainnersDto>)request.getAttribute("trainnerList");
 %>
 <body>
-<div align="center">
-<h1>트레이너 리스트</h1>
+<div align="center" class="center">
+<strong>트레이너 소개</strong>
 <div class=container>
 	<div class=row>
 	<%
@@ -34,7 +43,7 @@ List<TrainnersDto> trainnerList = (List<TrainnersDto>)request.getAttribute("trai
 		%>
 		<div class="col">
 			<div class="card" style="width: 18rem;">
-			  <img class="card-img-top" src="/trainer/<%=trainnerList.get(i).getTid() %>.jpg" style="width:250px;height:250px" height= alt="Card image cap" onerror="this.src='resources/images/trainer/null.jpg'">
+			  <img class="card-img-top" src="resources/images/trainer/<%=trainnerList.get(i).getTid() %>.jpg" style="width:250px;height:250px" height= alt="Card image cap" onerror="this.src='resources/images/trainer/null.jpg'">
 			  <div class="card-body">
 			    <p class="card-text">
 			 	 <p>이름 : <%=trainnerList.get(i).getName()%></p>

@@ -55,7 +55,7 @@ h1{
 	color: black;
 }
 span{
-	width: 33%;
+	width: 28%;
 }
 
 </style>
@@ -82,15 +82,15 @@ if(msg!=null)
 	<form class="singup-form" action="signup.do" method="post" onsubmit="return check()">
 		<h1>SIGN UP</h1>
 		<div class="input-group mb-3">
-  			<span class="input-group-text" id="inputGroup-sizing-default">userid</span>
+  			<span class="input-group-text" id="inputGroup-sizing-default">아이디</span>
   			<input type="text" id="id" name="id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 		</div>
 		<div class="input-group mb-3">
-  			<span class="input-group-text" id="inputGroup-sizing-default">Password</span>
+  			<span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
   			<input type="password" id="pw" name="pw" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 		</div>
 		<div class="input-group mb-3">
-  			<span class="input-group-text" id="inputGroup-sizing-default">Passwordcheck</span>
+  			<span class="input-group-text" id="inputGroup-sizing-default">비밀번호확인</span>
   			<input type="password" id="pwc" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 		</div>
 		<select class="form-select mb-3" aria-label="Default select example" name="auth">
@@ -117,10 +117,10 @@ if(msg!=null)
 		
 		<div class="row">
 			<div class="col-lg-6">
-				<input type="submit" value="회원가입" class="btn1 mt-3 mb-2 p-1">
+				<input type="submit" value="회원가입" class="btn1 mt-3 mb-2 p-1" style="height:50px">
 			</div>
 			<div class="col-lg-6">
-				<input type="button" value="돌아가기" onclick="moveLogin()" class="btn1 mt-3 mb-2 p-1">
+				<input type="button" value="돌아가기" onclick="moveLogin()" class="btn1 mt-3 mb-2 p-1" style="height:50px">
 			</div>
 		</div>
 
@@ -128,10 +128,6 @@ if(msg!=null)
 
 </div>
 </div>
-<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
 <script type="text/javascript">
 function moveLogin(){
 	location.href = "moveLogin.do";
