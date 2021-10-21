@@ -90,7 +90,8 @@ public class PTSController {
 		{
 			mService.downFl(pts.getMid());
 		}
-		model.addAttribute("content","init.jsp");
-		return "main";
+		String temp="["+(trainner.getField()==1?"PT":"필라테스")+"]분야의 ["+trainner.getName()+"]강사님으로 ["+pts.getPtdate()+"]에 예약되었습니다.";
+		model.addAttribute("msg",temp);
+		return "redirect:/moveInit.do";
 	}
 }

@@ -4,16 +4,22 @@ import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mysql.cj.Session;
 import com.one.health.dto.MembersDto;
 import com.one.health.dto.ReviewsDto;
 import com.one.health.dto.TrainnersDto;
+import com.one.health.dto.UsersDto;
 import com.one.health.dto.rDto;
 import com.one.health.service.MembersService;
 import com.one.health.service.ReviewsService;
@@ -73,10 +79,12 @@ public class TrainnersController {
 	}
 	
 	@RequestMapping(value="moveReviewView.do")
-	public String moveReview(Model model, int rnum)
+	public String moveReview(Model model, int rnum, HttpSession session)
 	{
 		logger.info("ReviewsController moveReview " + new Date());
 		
+		UsersDto user = (UsersDto)session.getAttribute("login");
+			
 		ReviewsDto review = rService.getReviews(rnum);
 		TrainnersDto trainer = tService.getTrainner(review.getTid());
 		MembersDto member = mService.getMembers(review.getMid());
@@ -88,16 +96,38 @@ public class TrainnersController {
 	}
 	
 	@RequestMapping(value="upRcm.do")
-	public String upRcm(int rnum)
+	public String upRcm(Model model, int rnum, HttpSession session)
 	{
-		rService.upRcm(rnum);
+		UsersDto user = (UsersDto)session.getAttribute("login");
+		if(user.getAuth()==1)
+		{
+			rService.upRcm(rnum);
+			String temp="이 글을 추천 하였습니다.";
+			model.addAttribute("msg",temp);
+		}
+		else
+		{
+			String temp="트레이너는 추천을 할 수 없습니다.";
+			model.addAttribute("msg",temp);
+		}
 		return "redirect:/moveReviewView.do?rnum="+rnum;
 	}
 	
 	@RequestMapping(value="upOps.do")
-	public String upOps(int rnum)
+	public String upOps(Model model, int rnum, HttpSession session)
 	{
-		rService.upOps(rnum);
+		UsersDto user = (UsersDto)session.getAttribute("login");
+		if(user.getAuth()==1)
+		{
+			rService.upOps(rnum);
+			String temp="이 글을 비추천 하였습니다.";
+			model.addAttribute("msg",temp);
+		}
+		else
+		{
+			String temp="트레이너는 비추천을 할 수 없습니다.";
+			model.addAttribute("msg",temp);
+		}
 		return "redirect:/moveReviewView.do?rnum="+rnum;
 	}
 }
