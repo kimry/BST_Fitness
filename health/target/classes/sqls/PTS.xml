@@ -26,35 +26,41 @@
 	SELECT SNUM, S.TID, MID, NAME, PTDATE, TIMES
 	FROM PTSCHEDULE S, TRAINNERS T
 	WHERE S.TID=T.TID AND MID=#{mid} AND PTDATE = TO_DATE(TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+	ORDER BY PTDATE, TIMES
 </select>
 
 <select id="getUpcomingList" parameterType="java.lang.String" resultType="com.one.health.dto.sDto">
 	SELECT SNUM, S.TID, MID, NAME, PTDATE, TIMES
 	FROM PTSCHEDULE S, TRAINNERS T
 	WHERE S.TID=T.TID AND MID=#{mid} AND PTDATE > TO_DATE(TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+	ORDER BY PTDATE, TIMES
 </select>
 
 <select id="getPastList" parameterType="java.lang.String" resultType="com.one.health.dto.sDto">
 	SELECT SNUM, S.TID, MID, NAME, PTDATE, TIMES
 	FROM PTSCHEDULE S, TRAINNERS T
 	WHERE S.TID=T.TID AND MID=#{mid} AND TO_DATE(TO_CHAR(SYSDATE,'YYYY-MM-DD')) > PTDATE
+	ORDER BY PTDATE DESC, TIMES DESC
 </select>
 
 <select id="getTodayListT" parameterType="java.lang.String" resultType="com.one.health.dto.sDto">
 	SELECT SNUM, TID, S.MID, NAME, PTDATE, TIMES
 	FROM PTSCHEDULE S, MEMBERS M
 	WHERE S.MID=M.MID AND TID=#{tid} AND PTDATE = TO_DATE(TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+	ORDER BY PTDATE, TIMES
 </select>
 
 <select id="getUpcomingListT" parameterType="java.lang.String" resultType="com.one.health.dto.sDto">
 	SELECT SNUM, TID, S.MID, NAME, PTDATE, TIMES
 	FROM PTSCHEDULE S, MEMBERS M
 	WHERE S.MID=M.MID AND TID=#{tid} AND PTDATE > TO_DATE(TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+	ORDER BY PTDATE, TIMES
 </select>
 
 <select id="getPastListT" parameterType="java.lang.String" resultType="com.one.health.dto.sDto">
 	SELECT SNUM, TID, S.MID, NAME, PTDATE, TIMES
 	FROM PTSCHEDULE S, MEMBERS M
 	WHERE S.MID=M.MID AND TID=#{tid} AND TO_DATE(TO_CHAR(SYSDATE,'YYYY-MM-DD')) > PTDATE
+	ORDER BY PTDATE DESC, TIMES DESC
 </select>
 </mapper>

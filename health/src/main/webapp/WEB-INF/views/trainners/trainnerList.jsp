@@ -47,7 +47,7 @@ List<TrainnersDto> trainnerList = (List<TrainnersDto>)request.getAttribute("trai
 			  <div class="card-body">
 			    <p class="card-text">
 			 	 <p>이름 : <%=trainnerList.get(i).getName()%></p>
-			    <p>분야 : <%=trainnerList.get(i).getField()==1?"pt트레이너":"필라테스" %></p>
+			    <p>분야 : <%=trainnerList.get(i).getField()==1?"PT":"필라테스" %></p>
 			    <button class="btn btn-dark" onclick="moveView()" id="<%=trainnerList.get(i).getTid() %>" >자세히 보기</button>
 			  </div>
 			</div>

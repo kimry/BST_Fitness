@@ -46,6 +46,28 @@ border-bottom: 2px solid #000;
 margin-top:5px;
 border-top:1px solid #D5D5D5;
 }
+table.type1 {
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+	border-bottom: 1px solid #000000;
+
+}
+table.type1 th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #f3f6f7;
+}
+table.type1 td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+}
 </style>
 
 </head>
@@ -57,9 +79,10 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 <div class="container">
 <form action ="membership.do" method="post">
 	<div class="membership_title">
-		<strong>멤버십 예약</strong>
-			<p>멤버십 예약 페이지입니다.
+		<strong>회원권 등록</strong>
+			<p>회원권 등록 페이지입니다.
 	</div>
+
 	<div class="row" id="header" align="center">
 		<div class="col">기간<br></div>
 		<div class="col">PT여부<br></div>
@@ -72,7 +95,7 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 			<select class="list-group" id = "time" name="time" size="3"  style="height:231px; width: 220px; text-align:center;">
 				<option class="list-group-item list-group-item-light active" data-bs-toggle="list" value = "0" selected>없음</option>
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "1">1일권</option>
-				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "2">한달</option>
+				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "2">1개월</option>
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "3">3개월</option>	
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "4">6개월</option>
 				<option class="list-group-item list-group-item-light" data-bs-toggle="list" value = "5">1년</option>
@@ -97,15 +120,15 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 	</div>
 
 
-<div class="container" id="submit">
+<div class="container" id="submit" style="margin-top:30px;">
 	<div class="row">
-		<div class="col" align="left">
-			<a>가격 : </a> <a id="priceText">0</a>
+		<div class="col" align="center" style="font-size: 20px">
+			<a><b>가격 : </b></a>&nbsp;<a id="priceText"><b>0</b></a>
 			<input type="hidden" name="price" id="price" value="0" readonly="readonly"><br>
 			<input type = "hidden" name="ptpoint" id= "ptpoint" value="0" readonly="readonly">
 			<input type = "hidden" name="flpoint" id= "flpoint" value="0" readonly="readonly">
 		</div>
-		<div class="col" align="right">
+		<div class="col" align="center">
 			<button type="submit" class="btn btn-dark" align="right">선택완료</button>
 		</div>
 	</div>
@@ -113,7 +136,59 @@ UsersDto user = (UsersDto)request.getSession().getAttribute("login");
 </form>
 
 </div>
+<br><br><br><br>
+<div align="center">
+<table style="margin: auto; width: 1000px;">
+<tr>
+<td valign="top">
+&nbsp;&nbsp;&nbsp;&nbsp;<b>헬스 회원권</b>
+<table class="type1" border="1" style="margin: 20px; font-size: 16px;">
+	<tr>
+		<th>1일</th>
+		<td>5,000원</td>
+	</tr>
+	<tr>
+		<th>1개월</th>
+		<td>50,000원</td>
+	</tr>
+	<tr>
+		<th>3개월</th>
+		<td>100,000원</td>
+	</tr>
+	<tr>
+		<th>6개월</th>
+		<td>200,000원</td>
+	</tr>
+	<tr>
+		<th>1년</th>
+		<td>300,000원</td>
+	</tr>
+</table>
+</td>
+<td valign="top">
+&nbsp;&nbsp;&nbsp;&nbsp;<b>PT / 필라테스</b>
+<table class="type1" border="1" style="margin: 20px; font-size: 16px;">
+	<tr>
+		<th>10회</th>
+		<td>100,000원</td>
+	</tr>
+	<tr>
+		<th>20회</th>
+		<td>200,000원</td>
+	</tr>
+	<tr>
+		<th>30회</th>
+		<td>300,000원</td>
+	</tr>
+	<tr>
+		<th>50회</th>
+		<td>400,000원</td>
+	</tr>
 
+</table>
+</td>
+</tr>
+</table>
 
 <script type="text/javascript">
 let ptpoint = 0;

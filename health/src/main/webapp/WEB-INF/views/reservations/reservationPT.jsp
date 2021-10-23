@@ -175,11 +175,11 @@ if(dto == null){
 <br>
 <div class="container">
 	<div class="row" id="point">
-		<div class="col" align="left">
-			<a>잔여 PT 포인트 : <%=member.getPtpoint() %></a><br>
-			<a>잔여 필라테스 포인트 : <%=member.getFlpoint() %></a>
+		<div class="col" style="font-size: 17px; text-align: left; margin-left: 150px; ">
+			<a><b>잔여 PT 포인트 : <%=member.getPtpoint() %></b></a><br>
+			<a><b>잔여 필라테스 포인트 : <%=member.getFlpoint() %></b></a>
 		</div>
-		<div class="col" align="right">
+		<div class="col" align="center" style="margin-left: 0; padding-left: 0">
 			<button type="submit" class="btn btn-dark">예약완료</button>
 		</div>
 	</div>
