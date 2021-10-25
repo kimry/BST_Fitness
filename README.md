@@ -13,7 +13,7 @@
   * 전준호
   * 천웅재
 * 개발환경
-  * Front-end : javascript / jsp / jquery
+  * Front-end : javascript / jsp / jquery/ bootstrap
   * Back-end : java / spring
   * DB : oracle
   * OS : windows 10
