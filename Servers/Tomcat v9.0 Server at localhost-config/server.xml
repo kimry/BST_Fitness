@@ -141,7 +141,7 @@
       </Realm>
 
       <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
-      	<Context docBase="C:/Users/kim/Desktop/study/semi/health/src/main/webapp/resources/images/trainer" path="/trainer" reloadable="false" />
+
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
         <!--
